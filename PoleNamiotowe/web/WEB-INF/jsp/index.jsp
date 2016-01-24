@@ -1,19 +1,64 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        ﻿<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+        <link rel="Stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+        <link rel="Stylesheet" type="text/css" href="css/stronaGlownaStyle.css" />
     </head>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>
+                        <div class="tekstNaglowka">
+                            Pole namiotowe
+                        </div>
+                    </h1>
+                </div>
+                <div class="col-sm-3">
+                    <div class="standardowyPrzycisk">
+                        Kontakt
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="standardowyPrzycisk">
+                        Zarejestruj się
+                    </div>
+                </div>
 
-    <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
-    </body>
+            </div>
+        </div>
+    </div>
+
+    <div class="wierszLogowania">
+
+        <div class="col-sm-6" >
+
+
+        </div>
+        <div class="col-sm-6">
+            <div class = "poleLogowania">
+
+                <h2>Zaloguj się:</h2>
+                <h4>Login:</h4>
+                <input class="form-control" type="text" id="lg"> 
+                <h4>Hasło:</h4>
+                <input class="form-control" type="text" id="lg">
+            </div>
+        </div>
+
+    </div>
+
+    <div class = "kimJestesmy">
+        <h1>
+            Informacje o nas: 
+        </h1>
+        <h4>
+            Od ponad 7 lat zajmujemy się zarządzania polem namiotowym i jesteśmy ekspertami w tej dziedzinie.
+        </h4>
+        Dołoncz do 9000 zadowolonych klientów.
+    </div>
+
 </html>
