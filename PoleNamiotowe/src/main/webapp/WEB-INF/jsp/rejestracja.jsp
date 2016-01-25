@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Kontakt</h1>
+	<h1>Rejestracja</h1>
 </body>
 </html>

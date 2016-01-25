@@ -15,5 +15,22 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+        
+<!--        <bean id="entityManagerFactory" class="javax.persistence.Persistence" factory-method="createEntityManagerFactory">
+            <constructor-arg name="persistenceUnitName" value="myDatabase" />
+        </bean>
+
+        <bean id="entityManager" factory-bean="entityManagerFactory" factory-method="createEntityManager" >
+        </bean>-->
+        <bean id="uzytkownikRepository" class="repositories.UzytkownikRepository">
+             
+        </bean>
+
+
+        <bean id="matematyczne" class="Beans.Matematyczne"/>
+        <bean id="matematyczneZlozone" class="Beans.MatematyczneZlozone">
+              <constructor-arg name="mt" ref="matematyczne" />
+        </bean>
+
 
 </beans>
