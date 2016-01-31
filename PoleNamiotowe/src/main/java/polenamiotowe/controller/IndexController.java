@@ -3,6 +3,7 @@ package polenamiotowe.controller;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,11 @@ import repositories.*;
 public class IndexController {
 
     UzytkownikRepository uzytkownikRespository;
-    
-    public IndexController(){
+    PoleRespository poleRespository;
+
+    public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
+        poleRespository = new PoleRespository();
     }
 
     @RequestMapping("/")
@@ -40,7 +43,7 @@ public class IndexController {
 
         try {
             if (!(pwd == null && usr == null)) {
-                if (uzytkownikRespository.UzytkownikIstnieje(usr, pwd)) {
+                if (uzytkownikRespository.UzytkownikIstnieje(usr)) {
                     mav.addObject("blad", 1);
                 } else {
                     uzytkownikRespository.RejestrujUzytkownika(usr, pwd);
@@ -74,6 +77,24 @@ public class IndexController {
     public ModelAndView listaGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("lista");
+        return mav;
+    }
+
+    @RequestMapping(value = "/dodawaniePola", method = RequestMethod.GET)
+    public ModelAndView dodawaniePolaGet(Model model, HttpServletRequest request) throws SQLException {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("DodawaniePola");
+        String adres = request.getParameter("adres");
+
+        if (!(adres == null)) {
+
+            if (poleRespository.istniejePole(adres)) {
+                mav.addObject("blad", "Pole ju¿ istnieje!");
+            } else {
+                poleRespository.dodajPole(adres);
+            }
+
+        }
         return mav;
     }
 }

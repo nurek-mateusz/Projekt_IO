@@ -29,7 +29,7 @@ public class UzytkownikRepository {
 
     }
 
-    public boolean UzytkownikIstnieje(String login, String password) throws SQLException {
+    public boolean UzytkownikIstnieje(String login) throws SQLException {
         Connection con;
 
         con = newEntityManager.getConnection();
@@ -82,8 +82,11 @@ public class UzytkownikRepository {
         try {
             
 
+
              statement.executeUpdate("INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "'," + 1 + ")");
             //statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + (count+1) + "," + 1 + ")");
+             
+
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
             return false;
