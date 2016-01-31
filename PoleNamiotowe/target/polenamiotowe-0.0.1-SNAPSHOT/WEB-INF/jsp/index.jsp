@@ -3,10 +3,8 @@
 
 <html>
 <head>
-﻿
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<link rel="Stylesheet" type="text/css"
-	href="bootstrap/css/bootstrap.css" />
+﻿<title>Strona glowna</title>
+<link rel="Stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="css/stronaGlownaStyle.css" />
 </head>
 <div class="header">
@@ -23,14 +21,16 @@
 				</a>
 			</div>
 			<div class="col-sm-3">
+                            	<a href="rejestracja">
 				<div class="standardowyPrzycisk">Zarejestruj się</div>
+                                </a>
 			</div>
 
 		</div>
 	</div>
 </div>
 
-<div class="wierszLogowania">
+<div class="wierszLogowania" style="background-image: url('img/namiot (2).jpg')">
 
 	<div class="col-sm-6"></div>
 	<div class="col-sm-6">

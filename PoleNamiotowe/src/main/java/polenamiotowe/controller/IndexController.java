@@ -30,8 +30,22 @@ public class IndexController {
     }
     
     @RequestMapping(value = "/rejestracja", method=RequestMethod.POST)
-    public String rejestracjaPost(Model model) {
-        
-        return "index";
+    public ModelAndView rejestracjaPost(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("rejestracja");
+        return mav;
+    }
+    
+    @RequestMapping(value = "/rezerwacjaMiejsca", method=RequestMethod.GET)
+    public ModelAndView rezerwacjaMiejscaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("RezerwacjaMiejsca");
+        return mav;
+    }
+        @RequestMapping(value = "/lista", method=RequestMethod.GET)
+    public ModelAndView listaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("lista");
+        return mav;
     }
 }
