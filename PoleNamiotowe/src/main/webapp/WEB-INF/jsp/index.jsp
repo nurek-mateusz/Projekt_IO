@@ -48,6 +48,7 @@
                 <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>
                 <input class="form-control" type="text" name="pwd">
+                <br/>
                 <button type="submit" class="btn btn-default">Zaloguj się</button>
                  </form>
             </div>
