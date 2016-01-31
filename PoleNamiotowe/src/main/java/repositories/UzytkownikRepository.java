@@ -80,7 +80,9 @@ public class UzytkownikRepository {
         }
         statement = con.createStatement();
         try {
-             statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + count + "," + 1 + ")");
+            
+             statement.executeUpdate("insert into uzytkownik (haslo,login,rolaID) values ('dupa','Mateusz2',1)" );
+             
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
             return false;
