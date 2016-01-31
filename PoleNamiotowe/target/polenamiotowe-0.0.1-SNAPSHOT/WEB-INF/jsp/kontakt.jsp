@@ -15,9 +15,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1>
-                            <div class="tekstNaglowka">Pole namiotowe</div>
-                        </h1>
+        <a href="/PoleNamiotowe/"> <h1>
+		    <div class="tekstNaglowka">
+				Pole namiotowe
+		    </div>
+            </h1></a>
                     </div>
                     <div class="col-sm-3">
                         <a href="kontakt">

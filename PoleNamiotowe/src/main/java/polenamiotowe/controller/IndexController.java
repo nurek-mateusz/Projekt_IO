@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
@@ -23,14 +24,15 @@ public class IndexController {
     }
     
     @RequestMapping(value = "/rejestracja", method=RequestMethod.GET)
-    public ModelAndView rejestracjaGet(Model model) {
+    public ModelAndView rejestracjaGet(Model model, @RequestParam(value="pwd",required=false) String pwd) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("rejestracja");
         return mav;
     }
     
     @RequestMapping(value = "/rejestracja", method=RequestMethod.POST)
-    public ModelAndView rejestracjaPost(Model model) {
+    public ModelAndView rejestracjaPost(Model model, @RequestParam(value="pwd",required=false) String pwd) {
+        
         ModelAndView mav = new ModelAndView();
         mav.setViewName("rejestracja");
         return mav;
