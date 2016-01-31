@@ -42,12 +42,14 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-
+                 <form action="/PoleNamiotowe/index">
                 <h2>Zaloguj się:</h2>
                 <h4>Login:</h4>
-                <input class="form-control" type="text" id="lg">
+                <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>
-                <input class="form-control" type="text" id="lg">
+                <input class="form-control" type="text" name="pwd">
+                <button type="submit" class="btn btn-default">Zaloguj się</button>
+                 </form>
             </div>
         </div>
 

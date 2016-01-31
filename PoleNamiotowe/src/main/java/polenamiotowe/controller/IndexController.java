@@ -43,4 +43,11 @@ public class IndexController {
         mav.setViewName("lista");
         return mav;
     }
+    
+            @RequestMapping(value = "/dodawaniePola", method=RequestMethod.GET)
+    public ModelAndView dodawaniePolaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("DodawaniePola");
+        return mav;
+    }
 }
