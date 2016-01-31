@@ -3,7 +3,7 @@
   <%
             // check if user has a valid session
             if (session.getAttribute("userId") != null) {
-                response.sendRedirect("/lista");
+                response.sendRedirect("/PoleNamiotowe/lista");
             }
 
         %>
@@ -42,7 +42,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="/PoleNamiotowe/index">
+                 <form action="login">
                 <h2>Zaloguj się:</h2>
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
