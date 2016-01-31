@@ -6,26 +6,91 @@
 package repositories;
 
 import Domain.Uzytkownik;
+import java.sql.Connection;
+import java.sql.Statement;
+
+import Beans.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Mateusz Purga³
  */
 public class UzytkownikRepository {
+
+    EntityManager newEntityManager;
     
-    Boolean czyUzytkownikIstnieje(String login, String haslo)
-    {
-        return false;
-        
+    public UzytkownikRepository(){
+    
+       newEntityManager = new EntityManager(); 
+
     }
-    Boolean DodajUzytkownika(String login, String haslo)
-    {
+
+    public boolean UzytkownikIstnieje(String login, String password) throws SQLException {
+        Connection con;
+
+        con = newEntityManager.getConnection();
+        Statement statement = con.createStatement();
+
+        ResultSet rs = statement.executeQuery("SELECT * FROM uzytkownik");
+
+        boolean isLogin = false;
+        while (rs.next()) {
+
+            String loginFromData = rs.getString("login");
+
+            if (loginFromData.toUpperCase().equals(login.toUpperCase())) {
+                isLogin = true;
+                break;
+            }
+        }
+
+        return isLogin;
+    }
+
+   public  boolean RejestrujUzytkownika(String login, String password) throws SQLException {
+        Connection con;
+        con = newEntityManager.getConnection();
+        Statement statement = null;
+
+        try {
+            statement = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        ResultSet rs = null;
+        try {
+            rs = statement.executeQuery("SELECT * FROM uzytkownik");
+        } catch (SQLException ex) {
+            Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        int count = 0;
+        try {
+            while (rs.next()) {
+                count++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        statement = con.createStatement();
+        try {
+             statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + count + "," + 1 + ")");
+        } catch (SQLException ex) {
+            Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
         return true;
     }
-    
-    Uzytkownik getByID(int ID)
-    {
-        
+
+    public Uzytkownik getByID(int ID) {
+
         return null;
     }
 }
