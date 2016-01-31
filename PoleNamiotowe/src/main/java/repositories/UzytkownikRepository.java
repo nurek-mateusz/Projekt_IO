@@ -13,6 +13,16 @@ import Domain.Uzytkownik;
  */
 public class UzytkownikRepository {
     
+    Boolean czyUzytkownikIstnieje(String login, String haslo)
+    {
+        return false;
+        
+    }
+    Boolean DodajUzytkownika(String login, String haslo)
+    {
+        return true;
+    }
+    
     Uzytkownik getByID(int ID)
     {
         

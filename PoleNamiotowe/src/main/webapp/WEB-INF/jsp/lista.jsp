@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="Stylesheet" type="text/css" href="css/bootstrap.css" />
-<link rel="Stylesheet" type="text/css" href="css/stronaGlownaStyle.css" />
-<link rel="Stylesheet" type="text/css" href="css/stylPol.css" />
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/bootstrap.css" />
+<link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stronaGlownaStyle.css" />
+<link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stylPol.css" />
+<script src="/PoleNamiotowe/js/jquery-2.2.0.min.js"></script>
+<script src="/PoleNamiotowe/js/bootstrap.min.js"></script>
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="js/skrypt.js"></script>
-<script src="js/skryptLista.js"></script>
+<script src="/PoleNamiotowe/js/skrypt.js"></script>
+<script src="/PoleNamiotowe/js/skryptLista.js"></script>
 <style>
 .elementListy
 {
@@ -106,23 +106,20 @@ display:none;
 
 </style>
 <div class="header">
-
-  <div class="row">
-    <div class="col-sm-6">
-        <a href="/PoleNamiotowe/"> <h1>
-		    <div class="tekstNaglowka">
-				Pole namiotowe
-		    </div>
-            </h1></a>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/PoleNamiotowe/"> <h1>
+                    <div class="tekstNaglowka">
+                        Pole namiotowe
+                    </div>
+                </h1></a>
+        </div>
+        <div class="col-sm-3">
+            <a href="/PoleNamiotowe/kontakt"><div class="standardowyPrzycisk">
+                    Kontakt
+                </div></a>
+        </div>
     </div>
-    <div class="col-sm-3">
-		<div class="standardowyPrzycisk">
-			Kontakt
-		</div>
-	</div>
-
-  </div>
-
 </div>
 
 

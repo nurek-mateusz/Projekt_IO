@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="Stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="css/stronaGlownaStyle.css" />
-<link rel="Stylesheet" type="text/css" href="css/stylPol.css" />
+
 <script src="js/jquery-2.2.0.min.js"></script>
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="js/RezerwacjaMiejsca.js"></script>
+
 
 <style>
     .zawartosc{
@@ -19,25 +19,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" >
     </head>
-    <div class="header">
-        <div class="row">
-            <div class="col-sm-6">
-                <a href="/PoleNamiotowe/"> <h1>
-                        <div class="tekstNaglowka">
-                            Pole namiotowe
-                        </div>
-                    </h1></a>
-            </div>
-            <div class="col-sm-3">
-                <div class="standardowyPrzycisk">
+<div class="header">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/PoleNamiotowe/"> <h1>
+                    <div class="tekstNaglowka">
+                        Pole namiotowe
+                    </div>
+                </h1></a>
+        </div>
+        <div class="col-sm-3">
+            <a href="/PoleNamiotowe/kontakt"><div class="standardowyPrzycisk">
                     Kontakt
-                </div>
-            </div>
+                </div></a>
         </div>
     </div>
+</div>
     <div class="zawartosc">
-        <h2>Zarejestruj si?</h2>
-        <h4>Masz już konto? Zaloguj się <a>tutaj</a></h4>
+        <h2>Zarejestruj się</h2>
+        <h4>Masz już konto? Zaloguj się <a href="/PoleNamiotowe">tutaj</a></h4>
         <div class="col-sm-4">
             <form action="/PoleNamiotowe/rejestracja">
 <!--                <label for="pwd">Login:</label>-->

@@ -24,19 +24,12 @@ public class IndexController {
     }
     
     @RequestMapping(value = "/rejestracja", method=RequestMethod.GET)
-    public ModelAndView rejestracjaGet(Model model, @RequestParam(value="pwd",required=false) String pwd) {
+        public ModelAndView rejestracjaGet(Model model, @RequestParam(value="pwd",required=false) String pwd) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("rejestracja");
         return mav;
     }
     
-    @RequestMapping(value = "/rejestracja", method=RequestMethod.POST)
-    public ModelAndView rejestracjaPost(Model model, @RequestParam(value="pwd",required=false) String pwd) {
-        
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("rejestracja");
-        return mav;
-    }
     
     @RequestMapping(value = "/rezerwacjaMiejsca", method=RequestMethod.GET)
     public ModelAndView rezerwacjaMiejscaGet(Model model) {
