@@ -1,10 +1,6 @@
 package polenamiotowe.controller;
 
-import Beans.EntityManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -73,15 +69,10 @@ public class IndexController {
         String password = request.getParameter("pwd");
 
         try {
-<<<<<<< HEAD
-            if (!(pwd == null && usr == null)) {
-                if (uzytkownikRespository.UzytkownikIstnieje(usr, pwd)) {
-                    mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
-=======
             if (!(password == null && user == null)) {
                 if (uzytkownikRespository.UzytkownikIstnieje(user, password)) {
-                    mav.addObject("blad", 1);
->>>>>>> 39b587af30ba5ba4c6cbe71c847ad526aca207c7
+                    mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
+
                 } else {
                     uzytkownikRespository.RejestrujUzytkownika(user, password);
                     mav.setViewName("index");
@@ -124,15 +115,13 @@ public class IndexController {
         mav.setViewName("DodawaniePola");
         return mav;
     }
-<<<<<<< HEAD
+
     
-                @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
+    @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
     public ModelAndView DodawaniePolaGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
         return mav;
     }
-=======
 
->>>>>>> 39b587af30ba5ba4c6cbe71c847ad526aca207c7
 }
