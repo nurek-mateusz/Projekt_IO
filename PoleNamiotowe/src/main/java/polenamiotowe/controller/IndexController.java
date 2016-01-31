@@ -1,10 +1,6 @@
 package polenamiotowe.controller;
 
-import Beans.EntityManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -75,7 +71,8 @@ public class IndexController {
         try {
             if (!(password == null && user == null)) {
                 if (uzytkownikRespository.UzytkownikIstnieje(user, password)) {
-                    mav.addObject("blad", 1);
+                    mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
+
                 } else {
                     uzytkownikRespository.RejestrujUzytkownika(user, password);
                     mav.setViewName("index");
@@ -114,6 +111,14 @@ public class IndexController {
 
     @RequestMapping(value = "/dodawaniePola", method = RequestMethod.GET)
     public ModelAndView dodawaniePolaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("DodawaniePola");
+        return mav;
+    }
+
+    
+    @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
+    public ModelAndView DodawaniePolaGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
         return mav;

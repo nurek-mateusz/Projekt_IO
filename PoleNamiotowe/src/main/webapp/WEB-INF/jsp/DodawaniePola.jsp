@@ -39,11 +39,10 @@
     <br/>
 <br/>
         <div class="col-sm-3">
-
-
-
             <form action="/PoleNamiotowe/rejestracja">
                <label for="pwd">Adres:</label>
+                <input type="text" class="form-control" name="usr">
+                <label for="pwd">Opis</label>
                 <input type="text" class="form-control" name="usr">
                 </br>
                 <button type="submit" class="btn btn-default">Dodaj pole</button>

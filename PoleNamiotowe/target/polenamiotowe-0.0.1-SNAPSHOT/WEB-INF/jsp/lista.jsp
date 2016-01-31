@@ -149,10 +149,10 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 	<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
@@ -171,10 +171,10 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 		<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
@@ -193,10 +193,10 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 		<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
@@ -209,7 +209,7 @@ Miejscowosc
 </div>
 <div class="col-sm-6">
 <h1>
-Chcesz dodaÄ nowe pole? 
+Chcesz dodać nowe pole? 
 </h1>
 <div class="col-sm-6">
 		<div class="niebieskiStandardowyPrzycisk" id = "czerwony">
