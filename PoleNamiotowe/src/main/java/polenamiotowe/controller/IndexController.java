@@ -41,7 +41,7 @@ public class IndexController {
         try {
             if (!(pwd == null && usr == null)) {
                 if (uzytkownikRespository.UzytkownikIstnieje(usr, pwd)) {
-                    mav.addObject("blad", 1);
+                    mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
                 } else {
                     uzytkownikRespository.RejestrujUzytkownika(usr, pwd);
                 }
@@ -79,6 +79,13 @@ public class IndexController {
     
             @RequestMapping(value = "/dodawaniePola", method=RequestMethod.GET)
     public ModelAndView dodawaniePolaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("DodawaniePola");
+        return mav;
+    }
+    
+                @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
+    public ModelAndView DodawaniePolaGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
         return mav;

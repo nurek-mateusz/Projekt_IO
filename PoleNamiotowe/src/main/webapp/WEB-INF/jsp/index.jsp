@@ -2,9 +2,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
   <%
             // check if user has a valid session
-            if (session.getAttribute("userId") != null) {
-                response.sendRedirect("/lista");
-            }
+            //if (session.getAttribute("userId") != null) {
+            //    response.sendRedirect("/lista");
+            //}
 
         %>
 <html>
