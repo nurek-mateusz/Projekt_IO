@@ -1,18 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
   <%
-            // check if user has a valid session
-<<<<<<< HEAD
-            //if (session.getAttribute("userId") != null) {
-            //    response.sendRedirect("/lista");
-            //}
-=======
             if (session.getAttribute("userId") != null) {
                 response.sendRedirect("/PoleNamiotowe/lista");
             }
->>>>>>> 39b587af30ba5ba4c6cbe71c847ad526aca207c7
-
-        %>
+            
+%>
 <html>
     <head>
         <title>Strona glowna</title>
