@@ -29,6 +29,20 @@ public class UzytkownikRepository {
 
     }
 
+    public String WeryfikujLoginHaslo(String login, String password)throws SQLException {
+        Connection con;
+
+        con = newEntityManager.getConnection();
+        Statement statement = con.createStatement();
+        
+        ResultSet rs = statement.executeQuery("SELECT * FROM uzytkownik WHERE login = '" + login + "' AND haslo = '" + password + "'");
+        if(rs.next()) {
+            return rs.getString("uzytkownikID");
+        }
+        
+        return null;
+    }
+    
     public boolean UzytkownikIstnieje(String login, String password) throws SQLException {
         Connection con;
 
@@ -50,7 +64,7 @@ public class UzytkownikRepository {
 
         return isLogin;
     }
-
+    
    public  boolean RejestrujUzytkownika(String login, String password) throws SQLException {
         Connection con;
         con = newEntityManager.getConnection();

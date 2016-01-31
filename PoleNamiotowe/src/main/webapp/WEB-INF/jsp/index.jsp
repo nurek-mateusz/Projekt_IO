@@ -2,9 +2,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
   <%
             // check if user has a valid session
+<<<<<<< HEAD
             //if (session.getAttribute("userId") != null) {
             //    response.sendRedirect("/lista");
             //}
+=======
+            if (session.getAttribute("userId") != null) {
+                response.sendRedirect("/PoleNamiotowe/lista");
+            }
+>>>>>>> 39b587af30ba5ba4c6cbe71c847ad526aca207c7
 
         %>
 <html>
@@ -42,7 +48,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="/PoleNamiotowe/index">
+                 <form action="login">
                 <h2>Zaloguj się:</h2>
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
