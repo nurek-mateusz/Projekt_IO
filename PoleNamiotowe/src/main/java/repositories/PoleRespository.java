@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Domain.PoleNamiotowe;
 
 /**
  *
@@ -242,5 +243,31 @@ public class PoleRespository {
         }
 
         return listaPol;
+    }
+    
+    public ArrayList<PoleNamiotowe> getWszystkiePola()
+    {
+        ArrayList<PoleNamiotowe> wszystkiePola = new ArrayList<PoleNamiotowe>();
+        try {
+            Connection con;
+            
+            con = newEntityManager.getConnection();
+            Statement statement = con.createStatement();
+            
+            ResultSet rs = statement.executeQuery("SELECT * FROM polenamiotowe");
+            if(rs.next()) {
+                String adres = rs.getString("adres");
+                String opis = rs.getString("opis");
+                String data = rs.getString("dataZalozenia");
+                int poleId = rs.getInt("poleNamiotoweID");
+                int userId = rs.getInt("uzytkownikID");
+                PoleNamiotowe pole = new PoleNamiotowe(adres,opis, data, poleId, userId);
+                wszystkiePola.add(pole);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PoleRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return wszystkiePola;
     }
 }
