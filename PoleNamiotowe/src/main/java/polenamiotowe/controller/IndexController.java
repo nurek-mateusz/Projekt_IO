@@ -22,7 +22,6 @@ public class IndexController {
 
     PoleRespository poleRespository;
 
-
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
         poleRespository = new PoleRespository();
@@ -103,16 +102,32 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/rezerwacjaMiejsca", method = RequestMethod.GET)
-    public ModelAndView rezerwacjaMiejscaGet(Model model) {
+    public ModelAndView rezerwacjaMiejscaGet(Model model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
+
         mav.setViewName("RezerwacjaMiejsca");
+
         return mav;
     }
 
     @RequestMapping(value = "/lista", method = RequestMethod.GET)
-    public ModelAndView listaGet(Model model) {
+    public ModelAndView listaGet(Model model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
+
         mav.setViewName("lista");
+
         return mav;
     }
 
@@ -122,9 +137,15 @@ public class IndexController {
 
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
+
         HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
+
         String adres = request.getParameter("adres");
-        String opis  = request.getParameter("opis");
+        String opis = request.getParameter("opis");
         Integer userID = Integer.parseInt((String) session.getAttribute("userId"));
 
         if (!(adres == null)) {
@@ -132,42 +153,62 @@ public class IndexController {
             if (poleRespository.istniejePole(adres)) {
                 mav.addObject("blad", "Pole ju¿ istnieje!");
             } else {
-                poleRespository.dodajPole(adres,opis,userID);
+                poleRespository.dodajPole(adres, opis, userID);
             }
 
         }
         return mav;
     }
 
-    
-    @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
-    public ModelAndView DodawaniePolaGet(Model model) {
+    @RequestMapping(value = "/DodawaniePola", method = RequestMethod.GET)
+    public ModelAndView DodawaniePolaGet(Model model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
         mav.setViewName("DodawaniePola");
+
         return mav;
     }
-    
-    @RequestMapping(value = "/edycjaPola", method=RequestMethod.GET)
-    public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane, 
-            @RequestParam(value = "poleId", required = true) int poleId) {
-        if(dane != null)
-        {
+
+    @RequestMapping(value = "/edycjaPola", method = RequestMethod.GET)
+    public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane,
+            @RequestParam(value = "poleId", required = true) int poleId, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("edycjaPola");
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
+
+        if (dane != null) {
             //kawalekPolaRepository.usunKawalkiPolaDlaPolaNamiotowego(poleId);
             //foreach
             //KawalekPola kp = parse(dane);
             //kawalekPolaRepository.zapisz(kp);
         }
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("edycjaPola");
+
         return mav;
     }
-    
-    @RequestMapping(value = "/ListaSwoichPol", method=RequestMethod.GET)
-    public ModelAndView ListaSwoichPolGet(Model model) {
+
+    @RequestMapping(value = "/ListaSwoichPol", method = RequestMethod.GET)
+    public ModelAndView ListaSwoichPolGet(Model model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userId") == null) {
+            mav.setViewName("index");
+            return mav;
+        }
+
         mav.setViewName("ListaSwoichPol");
+
         return mav;
     }
-    
-    
+
 }
