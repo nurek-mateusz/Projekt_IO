@@ -41,11 +41,9 @@
     }
     .elementListy .miejscowosc{
         position: relative;
-
         padding: 3px;
         border-right: 1px solid #aaa;
     }
-
 
     .naglowekListy
     {

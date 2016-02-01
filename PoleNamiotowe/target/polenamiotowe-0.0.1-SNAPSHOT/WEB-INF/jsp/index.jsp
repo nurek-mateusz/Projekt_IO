@@ -41,7 +41,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="login">
+                 <form action="/PoleNamiotowe/login">
                 <h3>Zaloguj się:</h3>
                  <%
                          if(request.getAttribute( "blad" ) != null)
@@ -54,7 +54,7 @@
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>
-                <input class="form-control" type="text" name="pwd">
+                <input class="form-control" type="password" name="pwd">
                 <br/>
                 <button type="submit" class="btn btn-default">Zaloguj się</button>
                  </form>

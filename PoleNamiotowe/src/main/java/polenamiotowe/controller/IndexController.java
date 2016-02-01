@@ -1,6 +1,8 @@
 package polenamiotowe.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,6 @@ public class IndexController {
     UzytkownikRepository uzytkownikRespository;
 
     PoleRespository poleRespository;
-
 
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
@@ -103,9 +104,18 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/rezerwacjaMiejsca", method = RequestMethod.GET)
-    public ModelAndView rezerwacjaMiejscaGet(Model model) {
+    public ModelAndView rezerwacjaMiejscaGet(Model model, @RequestParam(value = "poleId", required = true) int poleID) throws SQLException {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("RezerwacjaMiejsca");
+
+        List<KawalekPola> listaKawalkow = new ArrayList<KawalekPola>();
+        listaKawalkow = poleRespository.pobierzKawalkiPola(poleID);
+
+        if (listaKawalkow == null) {
+            mav.addObject("Blad", "To pole nie ma ¿adnych kawa³ków!");
+        } else {
+            mav.addObject("ListaKawalkow", listaKawalkow);
+        }
         return mav;
     }
 
@@ -124,7 +134,7 @@ public class IndexController {
         mav.setViewName("DodawaniePola");
         HttpSession session = request.getSession();
         String adres = request.getParameter("adres");
-        String opis  = request.getParameter("opis");
+        String opis = request.getParameter("opis");
         Integer userID = Integer.parseInt((String) session.getAttribute("userId"));
 
         if (!(adres == null)) {
@@ -132,42 +142,36 @@ public class IndexController {
             if (poleRespository.istniejePole(adres)) {
                 mav.addObject("blad", "Pole ju¿ istnieje!");
             } else {
-                poleRespository.dodajPole(adres,opis,userID);
+                poleRespository.dodajPole(adres, opis, userID);
             }
 
         }
         return mav;
     }
 
-    
-    @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
+    @RequestMapping(value = "/DodawaniePola", method = RequestMethod.GET)
     public ModelAndView DodawaniePolaGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
         return mav;
     }
-    
-    @RequestMapping(value = "/edycjaPola", method=RequestMethod.GET)
-    public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane, 
-            @RequestParam(value = "poleId", required = true) int poleId) {
-        if(dane != null)
-        {
-            //kawalekPolaRepository.usunKawalkiPolaDlaPolaNamiotowego(poleId);
-            //foreach
-            //KawalekPola kp = parse(dane);
-            //kawalekPolaRepository.zapisz(kp);
+
+    @RequestMapping(value = "/edycjaPola", method = RequestMethod.GET)
+    public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane,
+            @RequestParam(value = "poleId", required = true) int poleId) throws SQLException {
+        if (dane != null) {
+            poleRespository.aktualizujPole(poleId, dane);
         }
         ModelAndView mav = new ModelAndView();
         mav.setViewName("edycjaPola");
         return mav;
     }
-    
-    @RequestMapping(value = "/ListaSwoichPol", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/ListaSwoichPol", method = RequestMethod.GET)
     public ModelAndView ListaSwoichPolGet(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("ListaSwoichPol");
         return mav;
     }
-    
-    
+
 }
