@@ -42,11 +42,12 @@ public class IndexController {
         ModelAndView mav = new ModelAndView();
         String user = request.getParameter("usr");
         String password = request.getParameter("pwd");
-
+        
         try {
             String userId = uzytkownikRespository.WeryfikujLoginHaslo(user, password);
             if (userId != null) {
                 HttpSession session = request.getSession();
+                session.removeAttribute("userId");
                 session.setAttribute("userId", userId);
                 session.setMaxInactiveInterval(9000);
                 mav.clear();

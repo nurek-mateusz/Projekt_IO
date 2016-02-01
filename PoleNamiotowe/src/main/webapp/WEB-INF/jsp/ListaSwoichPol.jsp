@@ -77,12 +77,10 @@
 
 
     }
-    
-        .elementListy .dodatkoweInfo A
+
+    .elementListy .dodatkoweInfo A
     {
         float: right;
-
-
     }
 
     .naglowekListy
@@ -107,7 +105,7 @@
 
     .naglowekListy .nazwa{
         position: relative;
-        
+
         padding: 3px;
         width:20%;
 
@@ -148,54 +146,54 @@
         </div>
 
 
-                <%
-                    repositories.PoleRespository poleRepository = new PoleRespository();
-                    ArrayList<PoleNamiotowe> pola = poleRepository.getWszystkiePola();
+        <%
+            repositories.PoleRespository poleRepository = new PoleRespository();
+            ArrayList<PoleNamiotowe> pola = poleRepository.getWszystkiePola();
 
-                    String userIdStr = (String) session.getAttribute("userId");
-                    int userId = Integer.parseInt(userIdStr);
+            String userIdStr = (String) session.getAttribute("userId");
+            int userId = Integer.parseInt(userIdStr);
 
-                    ArrayList<PoleNamiotowe> polaUzytkownika = new ArrayList<PoleNamiotowe>();
+            ArrayList<PoleNamiotowe> polaUzytkownika = new ArrayList<PoleNamiotowe>();
 
-                    for (int i = 0; i < pola.size(); ++i) {
-                        if (pola.get(i).getUserId() == userId) {
-                            polaUzytkownika.add(pola.get(i));
-                        }
-                    }
+            for (int i = 0; i < pola.size(); ++i) {
+                if (pola.get(i).getUserId() == userId) {
+                    polaUzytkownika.add(pola.get(i));
+                }
+            }
 
-                    for (PoleNamiotowe x : polaUzytkownika) {
-                        out.println("<div class = \"elementListy\">");
-                        out.println("<div class = \"id\">");
-                        out.println(x.getId());
-                        out.println("</div>");
+            for (PoleNamiotowe x : polaUzytkownika) {
+                out.println("<div class = \"elementListy\">");
+                out.println("<div class = \"id\">");
+                out.println(x.getId());
+                out.println("</div>");
 
-                        out.println("<div class = \"miejscowosc\">");
-                        out.println(x.getAdres());
-                        out.println("</div>");
+                out.println("<div class = \"miejscowosc\">");
+                out.println(x.getAdres());
+                out.println("</div>");
 
-                        out.println("<span class = \"rozwin\">");
-                        out.println("Dowiedz się więcej!");
-                        out.println("</span>");
+                out.println("<span class = \"rozwin\">");
+                out.println("Dowiedz się więcej!");
+                out.println("</span>");
 
-                        out.println("<span class = \"zwin\">");
-                        out.println("Zwiń!");
-                        out.println("</span>");
+                out.println("<span class = \"zwin\">");
+                out.println("Zwiń!");
+                out.println("</span>");
 
-                        out.println("<div class = \"dodatkoweInfo\">");
-                        out.println("<opis>");
-                        out.println("</br>");
-                        out.println(x.getOpis());
-                        out.println("</opis>");
-                        out.println("<a href=\"/PoleNamiotowe/edycjaPola?poleId=" + x.getId() + "\">Edytuj to pole</a>");
-                        out.println("</div>");
-                        out.println("</div>");
+                out.println("<div class = \"dodatkoweInfo\">");
+                out.println("<opis>");
+                out.println("</br>");
+                out.println(x.getOpis());
+                out.println("</opis>");
+                out.println("<a href=\"/PoleNamiotowe/edycjaPola?poleId=" + x.getId() + "\">Edytuj to pole</a>");
+                out.println("</div>");
+                out.println("</div>");
 
-                    }
-                %>
-            </div> 
-        </div>
+            }
+        %>
+    </div> 
+</div>
 
-    </div>
+</div>
 </div>
 <div class="col-sm-6">
     <h1>
