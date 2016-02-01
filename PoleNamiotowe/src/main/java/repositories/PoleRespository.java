@@ -106,9 +106,10 @@ public class PoleRespository {
         {
                     Statement statement = con.createStatement();
 
-        ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE poleNamiotoweID=" + IDPola);
+        ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
         if (rs.first()) {
             statement.executeUpdate("DELETE FROM kawalekpola WHERE poleNamiotoweID =" + IDPola);
+            
             for (int i = 0; i < listaKawalkow.size(); i++) {
                 statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,cenaZaWynajem) VALUES "
                         + "(" + IDPola + "," + listaKawalkow.get(i).getPozycjaX() + "," + listaKawalkow.get(i).getPozycjaY() + "," + listaKawalkow.get(i).getWielkoscX()
@@ -293,7 +294,7 @@ public class PoleRespository {
         ResultSet rs = statement.executeQuery("SELECT * from kawalekpola WHERE poleNamiotoweID=" + IDPola);
         while(rs.next()){
         int pozycjaX = rs.getInt("pozycjaX");
-        int pozycjaY = rs.getInt("poxycjaY");
+        int pozycjaY = rs.getInt("pozycjaY");
         int wielkoscX = rs.getInt("wielkoscX");
         int wielkoscY = rs.getInt("wielkoscY");
         int koszt = rs.getInt("cenaZaWynajem");

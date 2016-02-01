@@ -70,6 +70,6 @@ public class KawalekPola {
     }
    
     public int getId() {
-        return koszt;
+        return id;
     }
 }

@@ -1,7 +1,8 @@
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="repositories.KawalekPola"%>
 <%@page import="repositories.PoleRespository"%>
-?<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stronaGlownaStyle.css" />
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stylPol.css" />
@@ -54,7 +55,6 @@
             </div>
         </div>
     </div>
-    <h2>Pole namiotowe Dupa2</h2>
     <div class="container">
 
         <%
@@ -97,6 +97,10 @@
     <div class="informacjeOPolu">
         <h2>Koszt:</h2> 
         <koszt></koszt> zl/za noc
+        <h2>Data rozpoczęcia:</h2> 
+        <input id="dataRozpoczecia"type="date">rrrr-mm-dd<br>
+        <h2>Data zakończenia:</h2> 
+        <input id="dataZakonczenia"type="date">rrrr-mm-dd<br>
         <div class="standardowyPrzycisk">
             Chce to miejsce!
         </div>
