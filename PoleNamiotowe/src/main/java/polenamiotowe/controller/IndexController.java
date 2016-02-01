@@ -154,6 +154,7 @@ public class IndexController {
                 mav.addObject("blad", "Pole ju¿ istnieje!");
             } else {
                 poleRespository.dodajPole(adres, opis, userID);
+                mav.setViewName("lista");
             }
 
         }
