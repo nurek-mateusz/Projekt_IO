@@ -48,7 +48,7 @@
                 <input type="text" class="form-control" name="adres">
 
                 <label for="pwd">Opis</label>
-                <input type="text" class="form-control" name="usr">
+                <input type="text" class="form-control" name="opis">
 
                 </br>
                 <button type="submit" class="btn btn-default">Dodaj pole</button>

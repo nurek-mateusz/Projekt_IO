@@ -56,14 +56,14 @@ background-image: url("img/namiot (2).jpg");
 .poleLogowania
 {
 height: 80%;
-margin: 5%;
+margin: 3%;
 width: 80%;
 background-color: #111;
   border-top-left-radius:12px;
   border-top-right-radius:12px;
   border-bottom-right-radius:12px;
   border-bottom-left-radius:12px;
-  padding: 5%;
+  padding: 1%;
   color: #999;
 }
 .poleLogowania input

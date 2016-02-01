@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +28,7 @@ public class PoleRespository {
         newEntityManager = new EntityManager();
     }
 
-    public boolean dodajPole(String adres) throws SQLException {
+    public boolean dodajPole(String adres,String Opis, int UzytkownikID) throws SQLException {
 
         Connection con;
         con = newEntityManager.getConnection();
@@ -57,7 +59,7 @@ public class PoleRespository {
         statement = con.createStatement();
         try {
 
-            statement.executeUpdate("INSERT INTO polenamiotowe (adres,dataZalozenia,poleNamiotoweID,uzytkownikID) VALUES ('" + adres + "',CURDATE()," + (count+1) + "," + 1 + ")");
+            statement.executeUpdate("INSERT INTO polenamiotowe (adres,opis,dataZalozenia,uzytkownikID) VALUES ('" + adres + "','" + Opis + "',CURDATE(),"  + UzytkownikID + ")");
 
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,4 +93,154 @@ public class PoleRespository {
         return isPole;
     }
 
+    public boolean aktualizujPole(int IDPola, String dane) throws SQLException {
+
+        List<KawalekPola> listaPol = new ArrayList<KawalekPola>();
+        listaPol = tworzPola(dane);
+
+        Connection con;
+
+        con = newEntityManager.getConnection();
+        Statement statement = con.createStatement();
+
+        ResultSet rs = statement.executeQuery("SELECT from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
+        if (rs.isFirst()) {
+            statement.executeQuery("DELETE FROM kawalekPola WHERE PoleNamiotoweID =" + IDPola);
+
+            for (int i = 0; i < listaPol.size(); i++) {
+                statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,koszt) VALUES "
+                        + "(" + IDPola + "," + listaPol.get(i).getPozycjaX() + "," + listaPol.get(i).getPozycjaY() + "," + listaPol.get(i).getWielkoscX()
+                        + "," + listaPol.get(i).getWielkoscY() + "," + listaPol.get(i).getKoszt() + ")");
+            }
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public static List<KawalekPola> tworzPola(String dane) {
+
+        List<KawalekPola> listaPol = new ArrayList<KawalekPola>();
+
+        if (dane.length() > 0) {
+            int numberOfSeparator = 0;
+
+            for (int i = 0; i < dane.length(); i++) {
+                if (dane.charAt(i) == ',') {
+                    numberOfSeparator++;
+                }
+            }
+
+            if (numberOfSeparator == 0) {
+                return listaPol;
+            } else {
+                for (int i = 0; i < numberOfSeparator; i = i + 5) {
+                    int pozycjaX;
+                    int pozycjaY;
+                    int wielkoscX;
+                    int wielkoscY;
+                    int koszt;
+
+                    /**
+                     * ****************Pozycja X *****************************
+                     */
+                    int placeOfSeparator = dane.indexOf(',');
+                    String s_pozycjaX = "";
+
+                    for (int j = 0; j < placeOfSeparator; j++) {
+                        s_pozycjaX = s_pozycjaX + dane.charAt(j);
+                    }
+                    pozycjaX = Integer.parseInt(s_pozycjaX);
+                    String newDane = "";
+                    for (int k = 0; k < dane.length(); k++) {
+                        if (k > placeOfSeparator) {
+                            newDane = newDane + dane.charAt(k);
+                        }
+                    }
+                    dane = newDane;
+                    /**
+                     * *************Pozycja Y ********************************
+                     */
+                    placeOfSeparator = dane.indexOf(',');
+                    String s_pozycjaY = "";
+
+                    for (int j = 0; j < placeOfSeparator; j++) {
+                        s_pozycjaY = s_pozycjaY + dane.charAt(j);
+                    }
+                    pozycjaY = Integer.parseInt(s_pozycjaY);
+                    newDane = "";
+                    for (int k = 0; k < dane.length(); k++) {
+                        if (k > placeOfSeparator) {
+                            newDane = newDane + dane.charAt(k);
+                        }
+                    }
+                    dane = newDane;
+
+                    /**
+                     * *******************Wielkosc X************************
+                     */
+                    placeOfSeparator = dane.indexOf(',');
+                    String s_wielkoscX = "";
+
+                    for (int j = 0; j < placeOfSeparator; j++) {
+                        s_wielkoscX = s_wielkoscX + dane.charAt(j);
+                    }
+                    wielkoscX = Integer.parseInt(s_wielkoscX);
+                    newDane = "";
+                    for (int k = 0; k < dane.length(); k++) {
+                        if (k > placeOfSeparator) {
+                            newDane = newDane + dane.charAt(k);
+                        }
+                    }
+                    dane = newDane;
+                    /**
+                     * ****************Wielkosc Y **************************
+                     */
+                    placeOfSeparator = dane.indexOf(',');
+                    String s_wielkoscY = "";
+
+                    for (int j = 0; j < placeOfSeparator; j++) {
+                        s_wielkoscY = s_wielkoscY + dane.charAt(j);
+                    }
+                    wielkoscY = Integer.parseInt(s_wielkoscY);
+                    newDane = "";
+                    for (int k = 0; k < dane.length(); k++) {
+                        if (k > placeOfSeparator) {
+                            newDane = newDane + dane.charAt(k);
+                        }
+                    }
+                    dane = newDane;
+
+                    /**
+                     * ***************Kwota**********************
+                     */
+                    if (numberOfSeparator - i != 4) {
+                        placeOfSeparator = dane.indexOf(',');
+                        String s_koszt = "";
+
+                        for (int j = 0; j < placeOfSeparator; j++) {
+                            s_koszt = s_koszt + dane.charAt(j);
+                        }
+                        koszt = Integer.parseInt(s_koszt);
+                        newDane = "";
+                        for (int k = 0; k < dane.length(); k++) {
+                            if (k > placeOfSeparator) {
+                                newDane = newDane + dane.charAt(k);
+                            }
+                        }
+                        dane = newDane;
+                    } else {
+                        koszt = Integer.parseInt(dane);
+                    }
+
+                    listaPol.add(new KawalekPola(pozycjaX, pozycjaY, wielkoscX, wielkoscY, koszt));
+
+                }
+            }
+
+        }
+
+        return listaPol;
+    }
 }

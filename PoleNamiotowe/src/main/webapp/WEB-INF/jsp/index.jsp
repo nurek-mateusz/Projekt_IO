@@ -42,7 +42,15 @@
         <div class="col-sm-6">
             <div class="poleLogowania">
                  <form action="login">
-                <h2>Zaloguj się:</h2>
+                <h3>Zaloguj się:</h3>
+                 <%
+                         if(request.getAttribute( "blad" ) != null)
+                        {
+                             out.print("<div class=\"alert alert-danger\"><Strong>BLĄD!</strong>");
+                             out.print(request.getAttribute( "blad" ));
+                             out.print("</div>");
+                        }
+                   %>
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>

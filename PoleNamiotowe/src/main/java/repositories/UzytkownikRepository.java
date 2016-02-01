@@ -96,12 +96,12 @@ public class UzytkownikRepository {
             return false;
         }
         statement = con.createStatement();
+         String zapytanie;
         try {
 
-            
-
-
-             statement.executeUpdate("INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "'," + 1 + ")");
+           
+            zapytanie = "INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "'," + '1' + ")";
+             statement.executeUpdate(zapytanie);
             //statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + (count+1) + "," + 1 + ")");
              
 
