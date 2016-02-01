@@ -48,7 +48,7 @@ public class IndexController {
             if (userId != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", userId);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(9000);
                 mav.clear();
                 mav.setViewName("lista");
                 return mav;

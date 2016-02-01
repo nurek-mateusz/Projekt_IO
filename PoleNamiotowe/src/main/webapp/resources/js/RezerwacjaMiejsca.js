@@ -34,7 +34,7 @@ $(".informacjeOPolu .standardowyPrzycisk").click(function(){
     var idKawalka = aktywne.find("info id").text();
      $.get( "/PoleNamiotowe/zarezerwujMiejsce", { idKawalka: idKawalka,
                                                   dataRozpoczecia: dataRozpoczecia,
-                                                  dataZakonczenia:dataZakonczenia} );
+                                                  dataZakonczenia: dataZakonczenia} );
 });
 
 

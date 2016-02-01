@@ -34,7 +34,7 @@
         border-right: 1px solid #aaa;
         position: relative;
     }
-
+    
     .elementListy .nazwa{
         position: relative;
         float:left;
@@ -105,13 +105,15 @@
 
 
     }
-
+    .dodatkoweInfo a{
+        float: right;
+    }
 
 </style>
 <div class="header">
     <div class="row">
         <div class="col-sm-6">
-            <a href="/PoleNamiotowe/"> <h1>
+            <a href="/PoleNamiotowe/lista/"> <h1>
                     <div class="tekstNaglowka">
                         Pole namiotowe
                     </div>
