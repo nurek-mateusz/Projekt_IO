@@ -36,7 +36,7 @@
             </div></div>
     </div>
 
-    <div class="wierszLogowania" style="background-image: url('img/namiot (2).jpg')">
+    <div class="wierszLogowania" style="background-image: url('/PoleNamiotowe/img/namiot (2).jpg')">
 
         <div class="col-sm-6"></div>
         <div class="col-sm-6">

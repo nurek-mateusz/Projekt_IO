@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +20,12 @@ public class IndexController {
 
     UzytkownikRepository uzytkownikRespository;
 
+    PoleRespository poleRespository;
+
+
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
+        poleRespository = new PoleRespository();
     }
 
     @RequestMapping("/")
@@ -69,6 +75,7 @@ public class IndexController {
         String password = request.getParameter("pwd");
 
         try {
+
             if (!(password == null && user == null)) {
                 if (uzytkownikRespository.UzytkownikIstnieje(user, password)) {
                     mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
@@ -110,9 +117,25 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/dodawaniePola", method = RequestMethod.GET)
-    public ModelAndView dodawaniePolaGet(Model model) {
+
+    public ModelAndView dodawaniePolaGet(Model model, HttpServletRequest request) throws SQLException {
+
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
+        HttpSession session = request.getSession();
+        String adres = request.getParameter("adres");
+        String opis  = request.getParameter("opis");
+        Integer userID = Integer.parseInt((String) session.getAttribute("userId"));
+
+        if (!(adres == null)) {
+
+            if (poleRespository.istniejePole(adres)) {
+                mav.addObject("blad", "Pole ju¿ istnieje!");
+            } else {
+                poleRespository.dodajPole(adres,opis,userID);
+            }
+
+        }
         return mav;
     }
 
