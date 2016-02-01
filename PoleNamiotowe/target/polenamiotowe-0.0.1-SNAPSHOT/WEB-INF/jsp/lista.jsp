@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Domain.PoleNamiotowe"%>
+<%@page import="repositories.PoleRespository"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stronaGlownaStyle.css" />
@@ -138,99 +141,66 @@
             </div>
         </div>
 
-        <div class = "elementListy">
-            <div class = "id">
-                1
-            </div>
-            <div class = "nazwa">
-                Dupa
-            </div>
-            <div class = "miejscowosc">
-                Praga
-            </div>
-            <span class = "rozwin">
-                Dowiedz się więcej!
-            </span>
-            <span class = "zwin">
-                Zwiń!
-            </span>
-            <div class = "dodatkoweInfo">
-                <opis>
-                    </br>Malownicza dolina xD hehe lol x2
-                </opis>
-                <a href="/PoleNamiotowe/rezerwacjaMiejsca?poleId=1">Zobacz wolne miejsca</a>
-            </div>
+        <%
+            repositories.PoleRespository poleRepository = new PoleRespository();
+            ArrayList<PoleNamiotowe> pola = poleRepository.getWszystkiePola();
+            for (PoleNamiotowe x : pola) {
+                out.println("<div class = \"elementListy\">");
+                 out.println("<div class = \"id\">");
+                 out.println(x.getId());
+                 out.println("</div>");
+
+                 out.println("<div class = \"miejscowosc\">");
+                 out.println(x.getAdres());
+                 out.println("</div>");
+
+                out.println("<span class = \"rozwin\">");
+                out.println("Dowiedz się więcej!");
+                out.println("</span>");
+
+                out.println("<span class = \"zwin\">");
+                out.println("Zwiń!");
+                out.println("</span>");
+
+                out.println("<div class = \"dodatkoweInfo\">");
+                out.println("<opis>");
+                out.println("</br>");
+                out.println(x.getOpis());
+                out.println("</opis>");
+                out.println("<a href=\"/PoleNamiotowe/rezerwacjaMiejsca?poleId=");
+                out.println(x.getId());
+                out.println("\">Zobacz wolne miejsca</a>");
+                out.println("</div>");
+                out.println("</div>");
+
+            }
+
+        %>
+
         </div>
-        <div class = "elementListy">
-            <div class = "id">
-                2
-            </div>
-            <div class = "nazwa">
-                Praga
-            </div>
-            <div class = "miejscowosc">
-                Praga
-            </div>
-            <span class = "rozwin">
-                Dowiedz się więcej!
-            </span>
-            <span class = "zwin">
-                Zwiń!
-            </span>
-            <div class = "dodatkoweInfo">
-                <opis>
-                    </br>opis
-                </opis>
-                <a href="/PoleNamiotowe/rezerwacjaMiejsca?poleId=2">Zobacz wolne miejsca</a>
-            </div>
-        </div>
-        <div class = "elementListy">
-            <div class = "id">
-                3
-            </div>
-            <div class = "nazwa">
-                Zacisze
-            </div>
-            <div class = "miejscowosc">
-                Praga
-            </div>
-            <span class = "rozwin">
-                Dowiedz się więcej!
-            </span>
-            <span class = "zwin">
-                Zwiń!
-            </span>
-            <div class = "dodatkoweInfo">
-                <opis>
-                    </br>opos
-                </opis>
-                <a href="/PoleNamiotowe/rezerwacjaMiejsca?poleId=3">Zobacz wolne miejsca</a>
-            </div>
-        </div>
+
     </div>
-
-</div>
-<div class="col-sm-6">
-    <h1>
-        Chcesz dodać nowe pole? 
-    </h1>
-    <a href ="/PoleNamiotowe/DodawaniePola">
-        <div class="col-sm-6">
-            <div class="niebieskiStandardowyPrzycisk" id = "czerwony">
-                Dodaj nowe pole
-            </div>
-        </div>
-    </a>
-
-    <br/>
-    <br/>
-    <br/>
-    <br/>   
     <div class="col-sm-6">
-        <a href ="/PoleNamiotowe/ListaSwoichPol">
-            <div class="niebieskiStandardowyPrzycisk" id = "czerwony">
-                Zarządzaj swoimi polami
+        <h1>
+            Chcesz dodać nowe pole? 
+        </h1>
+        <a href ="/PoleNamiotowe/DodawaniePola">
+            <div class="col-sm-6">
+                <div class="niebieskiStandardowyPrzycisk" id = "czerwony">
+                    Dodaj nowe pole
+                </div>
             </div>
         </a>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>   
+        <div class="col-sm-6">
+            <a href ="/PoleNamiotowe/ListaSwoichPol">
+                <div class="niebieskiStandardowyPrzycisk" id = "czerwony">
+                    Zarządzaj swoimi polami
+                </div>
+            </a>
+        </div>
     </div>
-</div>
