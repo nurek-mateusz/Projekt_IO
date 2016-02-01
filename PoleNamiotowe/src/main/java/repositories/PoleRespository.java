@@ -94,7 +94,7 @@ public class PoleRespository {
         return isPole;
     }
 
-    public boolean aktualizujPole(int IDPola, String dane) throws SQLException {
+    public boolean aktualizujPole(int IDPola, String dane)  {
 
         List<KawalekPola> listaKawalkow = new ArrayList<KawalekPola>();
         listaKawalkow = tworzPola(dane, IDPola);
@@ -102,11 +102,13 @@ public class PoleRespository {
         Connection con;
 
         con = newEntityManager.getConnection();
-        Statement statement = con.createStatement();
+        try
+        {
+                    Statement statement = con.createStatement();
 
-        ResultSet rs = statement.executeQuery("SELECT from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
+        ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE poleNamiotoweID=" + IDPola);
         if (rs.isFirst()) {
-            statement.executeQuery("DELETE FROM kawalekPola WHERE PoleNamiotoweID =" + IDPola);
+            statement.executeQuery("DELETE FROM kawalekPola WHERE poleNamiotoweID =" + IDPola);
 
             for (int i = 0; i < listaKawalkow.size(); i++) {
                 statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,cenaZaWynajem) VALUES "
@@ -117,11 +119,19 @@ public class PoleRespository {
         } else {
             return false;
         }
+        }catch(SQLException ex) {
+            Logger.getLogger(PoleRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+
+        return false;
     }
 
     public static List<KawalekPola> tworzPola(String dane, int IDPola) {
 
+        dane =  dane.substring(0,0) + dane.substring(0 + 1);
+        dane =  dane.substring(0,dane.length()-1) + dane.substring(dane.length());
+        
         List<KawalekPola> listaPol = new ArrayList<KawalekPola>();
 
         if (dane.length() > 0) {

@@ -10,9 +10,6 @@
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script src="/PoleNamiotowe/js/RezerwacjaMiejsca.js"></script>
-
-
-
 <style>
     .container
     {
@@ -40,73 +37,69 @@
         margin: 30px;
     }
 </style>
-<div class="header">
-    <div class="row">
-        <div class="col-sm-6">
-            <a href="/PoleNamiotowe/"> <h1>
-                    <div class="tekstNaglowka">
-                        Pole namiotowe
-                    </div>
-                </h1></a>
-        </div>
-        <div class="col-sm-3">
-            <a href="/PoleNamiotowe/kontakt"><div class="standardowyPrzycisk">
-                    Kontakt
-                </div></a>
+<body>
+    <div class="header">
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="/PoleNamiotowe/"> <h1>
+                        <div class="tekstNaglowka">
+                            Pole namiotowe
+                        </div>
+                    </h1></a>
+            </div>
+            <div class="col-sm-3">
+                <a href="/PoleNamiotowe/kontakt"><div class="standardowyPrzycisk">
+                        Kontakt
+                    </div></a>
+            </div>
         </div>
     </div>
-</div>
-<h2>Pole namiotowe Dupa2</h2>
-<div class="container">
+    <h2>Pole namiotowe Dupa2</h2>
+    <div class="container">
 
-    <%
-        repositories.PoleRespository poleRepository = new PoleRespository();
-        List<KawalekPola> pola = poleRepository.pobierzKawalkiPola(
-                Integer.parseInt(request.getParameter("poleId")));
-        for (KawalekPola x : pola) {
-            out.println("<div class = \"poleNamiotowe\">");
-            out.println("<info>");
-            out.println("<id>");
-            out.println(x.getId());
-            out.println("</id>");
-            out.println("<koszt>");
-            out.println(x.getKoszt());
-            out.println("</koszt>");
+        <%
+            repositories.PoleRespository poleRepository = new PoleRespository();
+            List<KawalekPola> pola = poleRepository.pobierzKawalkiPola(
+                    Integer.parseInt(request.getParameter("poleId")));
+            for (KawalekPola x : pola) {
+                out.println("<div class = \"poleNamiotowe\">");
+                out.println("<info>");
+                out.println("<id>");
+                out.println(x.getId());
+                out.println("</id>");
+                out.println("<koszt>");
+                out.println(x.getKoszt());
+                out.println("</koszt>");
 
-            out.println("<sizeX>");
-            out.println(x.getWielkoscX());
-            out.println("</sizeX>");
+                out.println("<sizeX>");
+                out.println(x.getWielkoscX());
+                out.println("</sizeX>");
 
-            out.println("<sizeY>");
-            out.println(x.getWielkoscY());
-            out.println("</sizeY>");
-            
-            out.println("<positionX>");
-            out.println(x.getPozycjaX());
-            out.println("</positionX>");
-            
-            out.println("<positionY>");
-            out.println(x.getPozycjaY());
-            out.println("</positionY>");
-            
-            out.println("</info>");
-            out.println("</div>");
+                out.println("<sizeY>");
+                out.println(x.getWielkoscY());
+                out.println("</sizeY>");
 
+                out.println("<positionX>");
+                out.println(x.getPozycjaX());
+                out.println("</positionX>");
 
-        
-    
+                out.println("<positionY>");
+                out.println(x.getPozycjaY());
+                out.println("</positionY>");
 
+                out.println("</info>");
+                out.println("</div>");
             }
+        %>
 
-    %>
-
-</div>
-
-<div class="informacjeOPolu">
-    <h2>Koszt:</h2> 
-    <koszt></koszt> zl/za noc
-    <div class="standardowyPrzycisk">
-        Chce to miejsce!
     </div>
 
-</div>
+    <div class="informacjeOPolu">
+        <h2>Koszt:</h2> 
+        <koszt></koszt> zl/za noc
+        <div class="standardowyPrzycisk">
+            Chce to miejsce!
+        </div>
+
+    </div>
+</body>
