@@ -107,9 +107,8 @@ public class PoleRespository {
                     Statement statement = con.createStatement();
 
         ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE poleNamiotoweID=" + IDPola);
-        if (rs.isFirst()) {
-            statement.executeQuery("DELETE FROM kawalekPola WHERE poleNamiotoweID =" + IDPola);
-
+        if (rs.first()) {
+            statement.executeUpdate("DELETE FROM kawalekpola WHERE poleNamiotoweID =" + IDPola);
             for (int i = 0; i < listaKawalkow.size(); i++) {
                 statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,cenaZaWynajem) VALUES "
                         + "(" + IDPola + "," + listaKawalkow.get(i).getPozycjaX() + "," + listaKawalkow.get(i).getPozycjaY() + "," + listaKawalkow.get(i).getWielkoscX()
