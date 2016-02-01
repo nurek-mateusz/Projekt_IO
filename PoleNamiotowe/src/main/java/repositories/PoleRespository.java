@@ -103,7 +103,7 @@ public class PoleRespository {
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
 
-        ResultSet rs = statement.executeQuery("SELECT from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
+        ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
         if (rs.isFirst()) {
             statement.executeQuery("DELETE FROM kawalekPola WHERE PoleNamiotoweID =" + IDPola);
 
