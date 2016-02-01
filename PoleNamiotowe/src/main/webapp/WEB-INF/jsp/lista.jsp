@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Domain.PoleNamiotowe"%>
+<%@page import="repositories.PoleRespository"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="/PoleNamiotowe/css/stronaGlownaStyle.css" />
@@ -137,6 +140,15 @@
                 Miejscowosc
             </div>
         </div>
+
+        <%
+            repositories.PoleRespository poleRepository = new PoleRespository();
+            ArrayList<PoleNamiotowe> pola = poleRepository.getWszystkiePola();
+            for (PoleNamiotowe x : pola) {
+                System.out.println(x);
+            }
+
+        %>
 
         <div class = "elementListy">
             <div class = "id">
