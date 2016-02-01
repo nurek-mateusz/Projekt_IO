@@ -1,12 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
   <%
-            // check if user has a valid session
             if (session.getAttribute("userId") != null) {
-                response.sendRedirect("/lista");
+                response.sendRedirect("/PoleNamiotowe/lista");
             }
-
-        %>
+            
+%>
 <html>
     <head>
         <title>Strona glowna</title>
@@ -37,12 +36,12 @@
             </div></div>
     </div>
 
-    <div class="wierszLogowania" style="background-image: url('img/namiot (2).jpg')">
+    <div class="wierszLogowania" style="background-image: url('/PoleNamiotowe/img/namiot (2).jpg')">
 
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="/PoleNamiotowe/index">
+                 <form action="login">
                 <h2>Zaloguj się:</h2>
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">

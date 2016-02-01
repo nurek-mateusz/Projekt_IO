@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +19,9 @@ import repositories.*;
 public class IndexController {
 
     UzytkownikRepository uzytkownikRespository;
+
     PoleRespository poleRespository;
+
 
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
@@ -28,6 +33,31 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/login")
+    public ModelAndView login(Model model, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        String user = request.getParameter("usr");
+        String password = request.getParameter("pwd");
+
+        try {
+            String userId = uzytkownikRespository.WeryfikujLoginHaslo(user, password);
+            if (userId != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userId", userId);
+                session.setMaxInactiveInterval(60);
+
+                mav.setViewName("lista");
+                return mav;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        mav.setViewName("rejestracja");
+        mav.addObject("blad", 1);
+        return mav;
+    }
+
     @RequestMapping("/kontakt")
     public ModelAndView kontakt(Model model) {
         ModelAndView mav = new ModelAndView();
@@ -37,16 +67,22 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/rejestracja", method = RequestMethod.GET)
-    public ModelAndView rejestracjaGet(Model model, @RequestParam(value = "pwd", required = false) String pwd, @RequestParam(value = "usr", required = false) String usr) {
+    public ModelAndView rejestracjaGet(Model model, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("rejestracja");
 
+        String user = request.getParameter("usr");
+        String password = request.getParameter("pwd");
+
         try {
-            if (!(pwd == null && usr == null)) {
-                if (uzytkownikRespository.UzytkownikIstnieje(usr)) {
-                    mav.addObject("blad", 1);
+
+            if (!(password == null && user == null)) {
+                if (uzytkownikRespository.UzytkownikIstnieje(user, password)) {
+                    mav.addObject("blad", "U¿ytkownik jest ju¿ zajêty!!");
+
                 } else {
-                    uzytkownikRespository.RejestrujUzytkownika(usr, pwd);
+                    uzytkownikRespository.RejestrujUzytkownika(user, password);
+                    mav.setViewName("index");
                 }
 
                 return mav;
@@ -81,7 +117,9 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/dodawaniePola", method = RequestMethod.GET)
+
     public ModelAndView dodawaniePolaGet(Model model, HttpServletRequest request) throws SQLException {
+
         ModelAndView mav = new ModelAndView();
         mav.setViewName("DodawaniePola");
         String adres = request.getParameter("adres");
@@ -97,4 +135,13 @@ public class IndexController {
         }
         return mav;
     }
+
+    
+    @RequestMapping(value = "/DodawaniePola", method=RequestMethod.GET)
+    public ModelAndView DodawaniePolaGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("DodawaniePola");
+        return mav;
+    }
+
 }

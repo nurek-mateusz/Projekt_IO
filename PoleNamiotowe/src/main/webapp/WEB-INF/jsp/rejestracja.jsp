@@ -40,12 +40,22 @@
         <h4>Masz już konto? Zaloguj się <a href="/PoleNamiotowe">tutaj</a></h4>
         <div class="col-sm-4">
             <form action="/PoleNamiotowe/rejestracja">
-<!--                <label for="pwd">Login:</label>-->
+                  <%
+                         if(request.getAttribute( "blad" ) != null)
+                        {
+                             out.print("<div class=\"alert alert-danger\"><Strong>BLĄD!<br/></strong>");
+                             out.print(request.getAttribute( "blad" ));
+                             out.print("</div>");
+                        }
+                   %>
+                <label for="pwd">Login:</label>
+                <div class = "blad">
+                </div>
                 <input type="text" class="form-control" name="usr">
-<!--                <label for="pwd">Hasło:</label>-->
+                <label for="pwd">Hasło:</label>
                 <input type="password" class="form-control" name="pwd">
-<!--                </br>
-                <label><input type="checkbox"> Zapoznałem się z <a data-toggle="modal" data-target="#myModal">regulaminiem</a></label>-->
+                </br>
+                <label><input type="checkbox"> Zapoznałem się z <a data-toggle="modal" data-target="#myModal">regulaminiem</a></label>
                 <button type="submit" class="btn btn-default">Zarejestruj się!</button>
             </form>
         </div>
