@@ -1,14 +1,15 @@
 $(function() {
-     $( ".draggable" ).draggable({
-    obstacle: "#butNotHere",
-    preventCollision: true,
-    containment: ".container"
-}).resizable();
+  var x = 0;
+$(".draggable").each(function() {
+        x++;
+        $(this).draggable({
+            containment: $('.container'),
+            scroll: true
+        });
+        $(this).resizable({
+            containment: $('.container')
+        });
+
+    });
+ 
 });
-
-
-$("#dragMe").draggable({
-    obstacle: "#butNotHere",
-    preventCollision: true,
-    containment: "#moveInHere"
-}).resizable();;

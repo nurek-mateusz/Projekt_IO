@@ -39,7 +39,7 @@ public class IndexController {
                 HttpSession session = request.getSession();
                 session.setAttribute("userId", userId);
                 session.setMaxInactiveInterval(60);
-
+                mav.clear();
                 mav.setViewName("lista");
                 return mav;
             }
@@ -47,8 +47,8 @@ public class IndexController {
             Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        mav.setViewName("rejestracja");
-        mav.addObject("blad", 1);
+        mav.setViewName("index");
+        mav.addObject("blad", "Niepoprawna nazwa u¿ytkownika lub has³o");
         return mav;
     }
 
@@ -123,5 +123,28 @@ public class IndexController {
         mav.setViewName("DodawaniePola");
         return mav;
     }
-
+    
+    @RequestMapping(value = "/edycjaPola", method=RequestMethod.GET)
+    public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane, 
+            @RequestParam(value = "poleId", required = true) int poleId) {
+        if(dane != null)
+        {
+            //kawalekPolaRepository.usunKawalkiPolaDlaPolaNamiotowego(poleId);
+            //foreach
+            //KawalekPola kp = parse(dane);
+            //kawalekPolaRepository.zapisz(kp);
+        }
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("edycjaPola");
+        return mav;
+    }
+    
+    @RequestMapping(value = "/ListaSwoichPol", method=RequestMethod.GET)
+    public ModelAndView ListaSwoichPolGet(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("ListaSwoichPol");
+        return mav;
+    }
+    
+    
 }

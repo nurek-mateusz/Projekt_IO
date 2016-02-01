@@ -5,7 +5,8 @@
   border-width: 1px;
   min-width: 100px;
   border-style: solid;
-
+  position: absolute !important;
+  
   border-color: black;
 }
 .infoOPolu zamkniecie
@@ -17,9 +18,14 @@ cursor: pointer;
 
 }
 .container{
-padding: 0px;
-height: 80%;
- border: 1px solid black;
+    padding: 0px;
+    position : absolute;
+    overflow: auto;
+    height: 80%;
+    width: 100%;
+    border: 1px solid black;
+    
+
 }
 .draggable info{
 	visibility: hidden;
@@ -60,4 +66,7 @@ height: 80%;
 	height: 30%;
 	background-color: orange;
 	padding:10px;
+        display: none;
 }
+
+

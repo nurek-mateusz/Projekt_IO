@@ -149,15 +149,16 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 	<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
 			</br>Malownicza dolina xD hehe lol x2
 		</opis>
+            <a href="/PoleNamiotowe/edycjaPola?poleId=1">Edytuj to pole</a>
 	</div>
 </div>
 <div class = "elementListy">
@@ -171,15 +172,16 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 		<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
 			</br>opis
 		</opis>
+            <a href="/PoleNamiotowe/edycjaPola?poleId=2">Edytuj to pole</a>
 	</div>
 </div>
 <div class = "elementListy">
@@ -193,27 +195,30 @@ Miejscowosc
 		Praga
 	</div>
 	<span class = "rozwin">
-		Dowiedz siÄ wiÄcej!
+		Dowiedz się więcej!
 	</span>
 		<span class = "zwin">
-		ZwiÅ!
+		Zwiń!
 	</span>
 	<div class = "dodatkoweInfo">
 		<opis>
 			</br>opos
 		</opis>
+            <a href="/PoleNamiotowe/edycjaPola?poleId=3">Edytuj to pole</a>
 	</div>
 </div>
 </div>
 
 </div>
 <div class="col-sm-6">
-<h1>
-Chcesz dodaÄ nowe pole? 
-</h1>
-<div class="col-sm-6">
-		<div class="niebieskiStandardowyPrzycisk" id = "czerwony">
-			Kliknji tutaj!
-		</div>
-</div>
+    <h1>
+        Chcesz dodać nowe pole? 
+    </h1>
+    <a href ="/PoleNamiotowe/DodawaniePola">
+        <div class="col-sm-6">
+            <div class="niebieskiStandardowyPrzycisk" id = "czerwony">
+                Dodaj nowe pole
+            </div>
+        </div>
+    </a>
 </div>
