@@ -255,7 +255,7 @@ public class PoleRespository {
             Statement statement = con.createStatement();
             
             ResultSet rs = statement.executeQuery("SELECT * FROM polenamiotowe");
-            if(rs.next()) {
+            while(rs.next()) {
                 String adres = rs.getString("adres");
                 String opis = rs.getString("opis");
                 String data = rs.getString("dataZalozenia");
