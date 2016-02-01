@@ -33,7 +33,7 @@ $(document).ready(function () {
            
         });
         tekst=tekst.substr(0,tekst.length-1);
-        tekst = '{'+ilosc.toString() + ',' +tekst+'}';
+        tekst = '{' +tekst+'}';
         $.get("/PoleNamiotowe/edycjaPola", { dane:tekst, poleId: $.urlParam('poleId').toString()  });
     });
 

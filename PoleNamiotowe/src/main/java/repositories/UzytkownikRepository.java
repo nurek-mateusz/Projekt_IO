@@ -22,29 +22,27 @@ import java.util.logging.Logger;
 public class UzytkownikRepository {
 
     EntityManager newEntityManager;
-    
-    public UzytkownikRepository(){
-    
-       newEntityManager = new EntityManager(); 
+
+    public UzytkownikRepository() {
+
+        newEntityManager = new EntityManager();
 
     }
 
-
-
-    public String WeryfikujLoginHaslo(String login, String password)throws SQLException {
+    public String WeryfikujLoginHaslo(String login, String password) throws SQLException {
         Connection con;
 
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
-        
+
         ResultSet rs = statement.executeQuery("SELECT * FROM uzytkownik WHERE login = '" + login + "' AND haslo = '" + password + "'");
-        if(rs.next()) {
+        if (rs.next()) {
             return rs.getString("uzytkownikID");
         }
-        
+
         return null;
     }
-    
+
     public boolean UzytkownikIstnieje(String login, String password) throws SQLException {
 
         Connection con;
@@ -67,8 +65,8 @@ public class UzytkownikRepository {
 
         return isLogin;
     }
-    
-   public  boolean RejestrujUzytkownika(String login, String password) throws SQLException {
+
+    public boolean RejestrujUzytkownika(String login, String password) throws SQLException {
         Connection con;
         con = newEntityManager.getConnection();
         Statement statement = null;
@@ -96,15 +94,12 @@ public class UzytkownikRepository {
             return false;
         }
         statement = con.createStatement();
-         String zapytanie;
+        String zapytanie;
         try {
 
-           
-            zapytanie = "INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "'," + '1' + ")";
-             statement.executeUpdate(zapytanie);
+            zapytanie = "INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "',1)";
+            statement.executeUpdate(zapytanie);
             //statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + (count+1) + "," + 1 + ")");
-             
-
 
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <a href="/PoleNamiotowe/"> <h1>
+                    <a href="/PoleNamiotowe/lista/"> <h1>
                             <div class="tekstNaglowka">
                                 Pole namiotowe
                             </div>

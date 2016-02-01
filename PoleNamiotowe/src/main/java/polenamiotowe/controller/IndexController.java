@@ -1,6 +1,9 @@
 package polenamiotowe.controller;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,8 @@ public class IndexController {
     UzytkownikRepository uzytkownikRespository;
 
     PoleRespository poleRespository;
+    
+    RezerwacjaRespository rezerwacjaRespository;
 
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
@@ -37,13 +42,14 @@ public class IndexController {
         ModelAndView mav = new ModelAndView();
         String user = request.getParameter("usr");
         String password = request.getParameter("pwd");
-
+        
         try {
             String userId = uzytkownikRespository.WeryfikujLoginHaslo(user, password);
             if (userId != null) {
                 HttpSession session = request.getSession();
+                session.removeAttribute("userId");
                 session.setAttribute("userId", userId);
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(9000);
                 mav.clear();
                 mav.setViewName("lista");
                 return mav;
@@ -102,7 +108,9 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/rezerwacjaMiejsca", method = RequestMethod.GET)
-    public ModelAndView rezerwacjaMiejscaGet(Model model, HttpServletRequest request) {
+
+    public ModelAndView rezerwacjaMiejscaGet(Model model, HttpServletRequest request, @RequestParam(value = "poleId", required = true) int poleID) throws SQLException {
+
         ModelAndView mav = new ModelAndView();
 
         HttpSession session = request.getSession();
@@ -113,6 +121,42 @@ public class IndexController {
 
         mav.setViewName("RezerwacjaMiejsca");
 
+        List<KawalekPola> listaKawalkow = new ArrayList<KawalekPola>();
+        try {
+            listaKawalkow = poleRespository.pobierzKawalkiPola(poleID);
+        } catch (SQLException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (listaKawalkow == null) {
+            mav.addObject("Blad", "To pole nie ma ¿adnych kawa³ków!");
+        } else {
+            mav.addObject("ListaKawalkow", listaKawalkow);
+        }
+        return mav;
+    }
+
+    @RequestMapping(value = "/zarezerwujMiejsce", method = RequestMethod.GET)
+    public ModelAndView zarezerwujMiejsceGet(Model model,HttpServletRequest request, @RequestParam(value = "poleId", required = true) int poleID,
+            @RequestParam(value = "poleId", required = true) String dataRozpoczecia, @RequestParam(value = "poleId", required = true) String dataZakonczenia) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("RezerwacjaMiejsca");
+        
+        HttpSession session = request.getSession();
+        Integer userID = Integer.parseInt((String) session.getAttribute("userId"));
+        try {
+            if(rezerwacjaRespository.mozliwaRejestracja(dataRozpoczecia, dataZakonczenia, poleID))
+                rezerwacjaRespository.dodajRezerwacje(dataRozpoczecia, dataZakonczenia, userID, poleID);
+            else{
+                mav.addObject("Blad", "Na dany termin rezerwacja nie jest mo¿liwa");
+            }
+                
+        } catch (ParseException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return mav;
     }
 
@@ -177,22 +221,21 @@ public class IndexController {
 
     @RequestMapping(value = "/edycjaPola", method = RequestMethod.GET)
     public ModelAndView edycjaPolaGet(Model model, @RequestParam(value = "dane", required = false) String dane,
-            @RequestParam(value = "poleId", required = true) int poleId, HttpServletRequest request) {
+            @RequestParam(value = "poleId", required = true) int poleId) {
+        
+        if(dane!= null)
+        {
+            poleRespository.aktualizujPole(poleId, dane);
+        }
+        
         ModelAndView mav = new ModelAndView();
         mav.setViewName("edycjaPola");
 
-        HttpSession session = request.getSession();
-        if (session.getAttribute("userId") == null) {
-            mav.setViewName("index");
-            return mav;
-        }
-
-        if (dane != null) {
-            //kawalekPolaRepository.usunKawalkiPolaDlaPolaNamiotowego(poleId);
-            //foreach
-            //KawalekPola kp = parse(dane);
-            //kawalekPolaRepository.zapisz(kp);
-        }
+        //HttpSession session = request.getSession();
+        //if (session.getAttribute("userId") == null) {
+        //    mav.setViewName("index");
+        //    return mav;
+        //}
 
         return mav;
     }

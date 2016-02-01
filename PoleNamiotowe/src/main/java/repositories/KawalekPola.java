@@ -11,11 +11,24 @@ package repositories;
  */
 public class KawalekPola {
 
-    private int pozycjaX;
-    private int pozycjaY;
-    private int wielkoscX;
-    private int wielkoscY;
-
+    protected int pozycjaX;
+    protected int pozycjaY;
+    protected int wielkoscX;
+    protected int wielkoscY;
+    protected int id;
+    protected int koszt;
+    
+        public KawalekPola(int _pozycjaX, int _pozycjaY, int _wielkoscX, int _wielkoscY, int _koszt, int _id) {
+        
+        this.pozycjaX = _pozycjaX;
+        this.pozycjaY = _pozycjaY;
+        this.wielkoscX = _wielkoscX;
+        this.wielkoscY = _wielkoscY;
+        this.koszt = _koszt;
+        this.id = _id;
+        
+    }
+        
     public int getPozycjaX() {
         return pozycjaX;
     }
@@ -55,15 +68,8 @@ public class KawalekPola {
     public void setKoszt(int koszt) {
         this.koszt = koszt;
     }
-    private int koszt;
-
-    public KawalekPola(int _pozycjaX, int _pozycjaY, int _wielkoscX, int _wielkoscY, int _koszt) {
-        
-        this.pozycjaX = _pozycjaX;
-        this.pozycjaY = _pozycjaY;
-        this.wielkoscX = _wielkoscX;
-        this.wielkoscY = _wielkoscY;
-        this.koszt = _koszt;
-        
+   
+    public int getId() {
+        return id;
     }
 }

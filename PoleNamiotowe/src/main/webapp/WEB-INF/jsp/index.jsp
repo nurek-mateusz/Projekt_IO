@@ -1,11 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-  <%
-            if (session.getAttribute("userId") != null) {
-                response.sendRedirect("/PoleNamiotowe/lista");
-            }
-            
-%>
+
 <html>
     <head>
         <title>Strona glowna</title>
@@ -41,7 +36,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="login">
+                 <form action="/PoleNamiotowe/login">
                 <h3>Zaloguj się:</h3>
                  <%
                          if(request.getAttribute( "blad" ) != null)
@@ -54,7 +49,7 @@
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>
-                <input class="form-control" type="text" name="pwd">
+                <input class="form-control" type="password" name="pwd">
                 <br/>
                 <button type="submit" class="btn btn-default">Zaloguj się</button>
                  </form>

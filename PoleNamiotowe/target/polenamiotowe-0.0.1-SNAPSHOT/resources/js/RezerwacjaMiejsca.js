@@ -28,4 +28,15 @@ polaNamiotowe.click(function(){
 	$( this ).css("background-color", "#C12121");
 });
 
+$(".informacjeOPolu .standardowyPrzycisk").click(function(){
+    var dataRozpoczecia = informacjeOPolu.find("#dataRozpoczecia").val();
+    var dataZakonczenia = informacjeOPolu.find("#dataZakonczenia").val();
+    var idKawalka = aktywne.find("info id").text();
+     $.get( "/PoleNamiotowe/zarezerwujMiejsce", { idKawalka: idKawalka,
+                                                  dataRozpoczecia: dataRozpoczecia,
+                                                  dataZakonczenia: dataZakonczenia} );
+});
+
+
+
 });

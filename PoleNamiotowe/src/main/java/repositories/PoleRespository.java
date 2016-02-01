@@ -29,7 +29,7 @@ public class PoleRespository {
         newEntityManager = new EntityManager();
     }
 
-    public boolean dodajPole(String adres,String Opis, int UzytkownikID) throws SQLException {
+    public boolean dodajPole(String adres, String Opis, int UzytkownikID) throws SQLException {
 
         Connection con;
         con = newEntityManager.getConnection();
@@ -60,7 +60,7 @@ public class PoleRespository {
         statement = con.createStatement();
         try {
 
-            statement.executeUpdate("INSERT INTO polenamiotowe (adres,opis,dataZalozenia,uzytkownikID) VALUES ('" + adres + "','" + Opis + "',CURDATE(),"  + UzytkownikID + ")");
+            statement.executeUpdate("INSERT INTO polenamiotowe (adres,opis,dataZalozenia,uzytkownikID) VALUES ('" + adres + "','" + Opis + "',CURDATE()," + UzytkownikID + ")");
 
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,34 +94,44 @@ public class PoleRespository {
         return isPole;
     }
 
-    public boolean aktualizujPole(int IDPola, String dane) throws SQLException {
+    public boolean aktualizujPole(int IDPola, String dane)  {
 
-        List<KawalekPola> listaPol = new ArrayList<KawalekPola>();
-        listaPol = tworzPola(dane);
+        List<KawalekPola> listaKawalkow = new ArrayList<KawalekPola>();
+        listaKawalkow = tworzPola(dane, IDPola);
 
         Connection con;
 
         con = newEntityManager.getConnection();
-        Statement statement = con.createStatement();
+        try
+        {
+                    Statement statement = con.createStatement();
 
-        ResultSet rs = statement.executeQuery("SELECT from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
-        if (rs.isFirst()) {
-            statement.executeQuery("DELETE FROM kawalekPola WHERE PoleNamiotoweID =" + IDPola);
-
-            for (int i = 0; i < listaPol.size(); i++) {
-                statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,koszt) VALUES "
-                        + "(" + IDPola + "," + listaPol.get(i).getPozycjaX() + "," + listaPol.get(i).getPozycjaY() + "," + listaPol.get(i).getWielkoscX()
-                        + "," + listaPol.get(i).getWielkoscY() + "," + listaPol.get(i).getKoszt() + ")");
+        ResultSet rs = statement.executeQuery("SELECT * from poleNamiotowe WHERE PoleNamiotoweID=" + IDPola);
+        if (rs.first()) {
+            statement.executeUpdate("DELETE FROM kawalekpola WHERE poleNamiotoweID =" + IDPola);
+            
+            for (int i = 0; i < listaKawalkow.size(); i++) {
+                statement.executeUpdate("INSERT INTO kawalekpola (poleNamiotoweID,pozycjaX,pozycjaY,wielkoscX,wielkoscY,cenaZaWynajem) VALUES "
+                        + "(" + IDPola + "," + listaKawalkow.get(i).getPozycjaX() + "," + listaKawalkow.get(i).getPozycjaY() + "," + listaKawalkow.get(i).getWielkoscX()
+                        + "," + listaKawalkow.get(i).getWielkoscY() + "," + listaKawalkow.get(i).getKoszt() + ")");
             }
             return true;
-        }
-        else
+        } else {
             return false;
+        }
+        }catch(SQLException ex) {
+            Logger.getLogger(PoleRespository.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+
+        return false;
     }
 
-    public static List<KawalekPola> tworzPola(String dane) {
+    public static List<KawalekPola> tworzPola(String dane, int IDPola) {
 
+        dane =  dane.substring(0,0) + dane.substring(0 + 1);
+        dane =  dane.substring(0,dane.length()-1) + dane.substring(dane.length());
+        
         List<KawalekPola> listaPol = new ArrayList<KawalekPola>();
 
         if (dane.length() > 0) {
@@ -235,7 +245,7 @@ public class PoleRespository {
                         koszt = Integer.parseInt(dane);
                     }
 
-                    listaPol.add(new KawalekPola(pozycjaX, pozycjaY, wielkoscX, wielkoscY, koszt));
+                    listaPol.add(new KawalekPola(pozycjaX, pozycjaY, wielkoscX, wielkoscY, koszt, IDPola));
 
                 }
             }
@@ -244,6 +254,7 @@ public class PoleRespository {
 
         return listaPol;
     }
+
     
     public ArrayList<PoleNamiotowe> getWszystkiePola()
     {
@@ -269,5 +280,31 @@ public class PoleRespository {
         }
         
         return wszystkiePola;
+    }
+    
+    public List<KawalekPola> pobierzKawalkiPola(int IDPola) throws SQLException {
+
+        List<KawalekPola> listaKawalkow = new ArrayList<KawalekPola>();
+
+        Connection con;
+
+        con = newEntityManager.getConnection();
+        Statement statement = con.createStatement();
+
+        ResultSet rs = statement.executeQuery("SELECT * from kawalekpola WHERE poleNamiotoweID=" + IDPola);
+        while(rs.next()){
+        int pozycjaX = rs.getInt("pozycjaX");
+        int pozycjaY = rs.getInt("pozycjaY");
+        int wielkoscX = rs.getInt("wielkoscX");
+        int wielkoscY = rs.getInt("wielkoscY");
+        int koszt = rs.getInt("cenaZaWynajem");
+        int id = rs.getInt("kawalekPolaID");
+        
+        listaKawalkow.add(new KawalekPola(pozycjaX,pozycjaY,wielkoscX,wielkoscY,koszt,id));
+        
+        }
+
+        return listaKawalkow;
+
     }
 }
