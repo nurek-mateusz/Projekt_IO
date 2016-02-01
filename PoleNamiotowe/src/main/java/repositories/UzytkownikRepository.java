@@ -29,7 +29,24 @@ public class UzytkownikRepository {
 
     }
 
+
+
+    public String WeryfikujLoginHaslo(String login, String password)throws SQLException {
+        Connection con;
+
+        con = newEntityManager.getConnection();
+        Statement statement = con.createStatement();
+        
+        ResultSet rs = statement.executeQuery("SELECT * FROM uzytkownik WHERE login = '" + login + "' AND haslo = '" + password + "'");
+        if(rs.next()) {
+            return rs.getString("uzytkownikID");
+        }
+        
+        return null;
+    }
+    
     public boolean UzytkownikIstnieje(String login, String password) throws SQLException {
+
         Connection con;
 
         con = newEntityManager.getConnection();
@@ -50,7 +67,7 @@ public class UzytkownikRepository {
 
         return isLogin;
     }
-
+    
    public  boolean RejestrujUzytkownika(String login, String password) throws SQLException {
         Connection con;
         con = newEntityManager.getConnection();
@@ -79,10 +96,16 @@ public class UzytkownikRepository {
             return false;
         }
         statement = con.createStatement();
+         String zapytanie;
         try {
-            
-             statement.executeUpdate("insert into uzytkownik (haslo,login,rolaID) values ('dupa','Mateusz2',1)" );
+
+           
+            zapytanie = "INSERT INTO uzytkownik (haslo,login,rolaID) VALUES ('" + password + "','" + login + "'," + '1' + ")";
+             statement.executeUpdate(zapytanie);
+            //statement.executeUpdate("INSERT INTO Uzytkownik VALUES ('" + login + "','" + password + "'," + (count+1) + "," + 1 + ")");
              
+
+
         } catch (SQLException ex) {
             Logger.getLogger(UzytkownikRepository.class.getName()).log(Level.SEVERE, null, ex);
             return false;

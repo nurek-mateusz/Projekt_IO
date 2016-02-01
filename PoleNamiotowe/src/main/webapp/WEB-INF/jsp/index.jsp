@@ -1,12 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
   <%
-            // check if user has a valid session
             if (session.getAttribute("userId") != null) {
-                response.sendRedirect("/lista");
+                response.sendRedirect("/PoleNamiotowe/lista");
             }
-
-        %>
+            
+%>
 <html>
     <head>
         <title>Strona glowna</title>
@@ -37,17 +36,25 @@
             </div></div>
     </div>
 
-    <div class="wierszLogowania" style="background-image: url('img/namiot (2).jpg')">
+    <div class="wierszLogowania" style="background-image: url('/PoleNamiotowe/img/namiot (2).jpg')">
 
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <div class="poleLogowania">
-                 <form action="/PoleNamiotowe/index">
-                <h2>Zaloguj się:</h2>
+                 <form action="/PoleNamiotowe/login">
+                <h3>Zaloguj się:</h3>
+                 <%
+                         if(request.getAttribute( "blad" ) != null)
+                        {
+                             out.print("<div class=\"alert alert-danger\"><Strong>BLĄD!</strong>");
+                             out.print(request.getAttribute( "blad" ));
+                             out.print("</div>");
+                        }
+                   %>
                 <h4>Login:</h4>
                 <input class="form-control" type="text" name="usr">
                 <h4>Hasło:</h4>
-                <input class="form-control" type="text" name="pwd">
+                <input class="form-control" type="password" name="pwd">
                 <br/>
                 <button type="submit" class="btn btn-default">Zaloguj się</button>
                  </form>
