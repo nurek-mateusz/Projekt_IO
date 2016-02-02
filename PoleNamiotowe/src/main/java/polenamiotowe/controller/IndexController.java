@@ -140,16 +140,19 @@ public class IndexController {
     @RequestMapping(value = "/zarezerwujMiejsce", method = RequestMethod.GET)
     public ModelAndView zarezerwujMiejsceGet(Model model,HttpServletRequest request, @RequestParam(value = "idKawalka", required = true) int poleID,
             @RequestParam(value = "dataRozpoczecia", required = true) String dataRozpoczecia, @RequestParam(value = "dataZakonczenia", required = true) String dataZakonczenia) {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("RezerwacjaMiejsca");
+        ModelAndView mav = new ModelAndView("lista");
+
         
         HttpSession session = request.getSession();
         Integer userID = Integer.parseInt((String) session.getAttribute("userId"));
         try {
             if(rezerwacjaRespository.mozliwaRejestracja(dataRozpoczecia, dataZakonczenia, poleID))
-                rezerwacjaRespository.dodajRezerwacje(dataRozpoczecia, dataZakonczenia, userID, poleID);
+            {
+                    rezerwacjaRespository.dodajRezerwacje(dataRozpoczecia, dataZakonczenia, userID, poleID);
+                    request.setAttribute("success", "Uda³o siê zarezerwowaæ miejsce!");
+            }
             else{
-                mav.addObject("Blad", "Na dany termin rezerwacja nie jest mo¿liwa");
+               request.setAttribute("blad", "Na dany termin rezerwacja nie jest mo¿liwa");
             }
                 
         } catch (ParseException ex) {
@@ -157,6 +160,8 @@ public class IndexController {
         } catch (SQLException ex) {
             Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         
         return mav;
     }

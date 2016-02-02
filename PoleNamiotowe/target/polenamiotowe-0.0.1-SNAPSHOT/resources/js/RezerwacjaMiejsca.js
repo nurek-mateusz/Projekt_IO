@@ -32,9 +32,7 @@ $(".informacjeOPolu .standardowyPrzycisk").click(function(){
     var dataRozpoczecia = informacjeOPolu.find("#dataRozpoczecia").val();
     var dataZakonczenia = informacjeOPolu.find("#dataZakonczenia").val();
     var idKawalka = aktywne.find("info id").text();
-     $.get( "/PoleNamiotowe/zarezerwujMiejsce", { idKawalka: idKawalka,
-                                                  dataRozpoczecia: dataRozpoczecia,
-                                                  dataZakonczenia: dataZakonczenia} );
+    window.location = "/PoleNamiotowe/zarezerwujMiejsce?idKawalka="+idKawalka+"&dataRozpoczecia="+dataRozpoczecia+"&dataZakonczenia="+dataZakonczenia;
 });
 
 
