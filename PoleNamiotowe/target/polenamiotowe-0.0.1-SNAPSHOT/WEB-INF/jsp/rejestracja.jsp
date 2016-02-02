@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="Stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="Stylesheet" type="text/css" href="css/stronaGlownaStyle.css" />
-
 <script src="js/jquery-2.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
@@ -74,7 +74,7 @@
                     <p>1. Warunkiem korzystania z tej strony jest pełne zrozumienie, zaakceptowanie i przestrzeganie reguł serwisu.</p> 
                     <p>2. Wchodząc na stronę automatycznie zgadzasz się, aby Twój adres IP był do wględu administracji.</p>  
                     <p>3. Nie floodujemy, nie spamujemy.</p>
-                    <p>4. Obowiązuje zakaz używania emotikonek (również w cytatach). Wyjątek stanowią: :3 ;3 ;_; xD oraz spurdoemotki. Nie pytaj, dlaczego te, a nie inne - tak działa życie.</p>
+                    <p>4. Obowiązuje zakaz używania emotikonek (również w cytatach). Wyjątek stanowią: :3 ;3 ;_; xD.</p>
                     <p>5. Serwis jest niewskazany dla osób chorujących na epilepsję.</p>     
                 </div>
                 <div class="modal-footer">

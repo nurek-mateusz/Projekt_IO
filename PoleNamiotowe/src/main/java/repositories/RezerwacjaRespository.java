@@ -33,8 +33,8 @@ public class RezerwacjaRespository {
 
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
-        String zapytanie = "INSERT INTO uzytkownik (dataRozpoczecia,dataZakonczenia,dataZgloszeniaRezerwacji,uzytkownikID,kawalekPolaID) VALUES";
-        String zapytanie2 = "(" + dataRozpoczecia + "," + dataZakonczenia + ",CURDATE()," + uzytkownikID + "," + kawalekPolaID + ")";
+        String zapytanie = "INSERT INTO rezerwacja (dataZaczecia,dataZakonczenia,dataZgloszeniaRezerwacji,uzytkownikID,kawalekPolaID) VALUES";
+        String zapytanie2 = "('" + dataRozpoczecia + "','" + dataZakonczenia + "',CURDATE()," + uzytkownikID + "," + kawalekPolaID + ")";
         statement.executeUpdate((zapytanie + zapytanie2));
 
     }
@@ -50,15 +50,15 @@ public class RezerwacjaRespository {
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
 
-        ResultSet rs = statement.executeQuery("SELECT from rezerwacja WHERE rezerwacjaID=" + kawalekPolaID);
+        ResultSet rs = statement.executeQuery("SELECT * from rezerwacja WHERE rezerwacjaID=" + kawalekPolaID);
         boolean czyRezerwowac = true;
         while (rs.next()) {
             Date bdDataR = format.parse(rs.getNString("dataZaczecia"));
             Date bdDataZ = format.parse(rs.getNString("dataZakonczenia"));
 
-            if (dataR.compareTo(bdDataZ) >= 1) {
+             if (dataR.compareTo(bdDataZ) >= 1) {
 
-            } else if (dataZ.compareTo(bdDataZ) >= 1) {
+            } else if (dataZ.compareTo(bdDataR) >= 1) {
 
             } else {
                 czyRezerwowac = false;
