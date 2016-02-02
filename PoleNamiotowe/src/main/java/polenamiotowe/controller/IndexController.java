@@ -30,6 +30,7 @@ public class IndexController {
     public IndexController() {
         uzytkownikRespository = new UzytkownikRepository();
         poleRespository = new PoleRespository();
+        rezerwacjaRespository = new RezerwacjaRespository();
     }
 
     @RequestMapping("/")
@@ -137,8 +138,8 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/zarezerwujMiejsce", method = RequestMethod.GET)
-    public ModelAndView zarezerwujMiejsceGet(Model model,HttpServletRequest request, @RequestParam(value = "poleId", required = true) int poleID,
-            @RequestParam(value = "poleId", required = true) String dataRozpoczecia, @RequestParam(value = "poleId", required = true) String dataZakonczenia) {
+    public ModelAndView zarezerwujMiejsceGet(Model model,HttpServletRequest request, @RequestParam(value = "idKawalka", required = true) int poleID,
+            @RequestParam(value = "dataRozpoczecia", required = true) String dataRozpoczecia, @RequestParam(value = "dataZakonczenia", required = true) String dataZakonczenia) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("RezerwacjaMiejsca");
         
