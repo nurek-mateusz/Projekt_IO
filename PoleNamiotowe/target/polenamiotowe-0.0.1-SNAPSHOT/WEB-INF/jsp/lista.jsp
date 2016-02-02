@@ -129,6 +129,22 @@
 
 
 <div class="col-sm-6">
+    
+                             <%
+                         if(request.getAttribute("blad" ) != null)
+                        {
+                             out.print("<div class=\"alert alert-danger\"><Strong>BLĄD!</strong>");
+                             out.print(request.getAttribute( "blad" ));
+                             out.print("</div>");
+                        }
+
+                        if(request.getAttribute( "success" ) != null)
+                        {
+                             out.print("<div class=\"alert alert-success\"><Strong>Udało się!</strong>");
+                             out.print(request.getAttribute( "success" ));
+                             out.print("</div>");
+                        }
+                   %>
     <div class = "lista">
 
         <div class = "naglowekListy">

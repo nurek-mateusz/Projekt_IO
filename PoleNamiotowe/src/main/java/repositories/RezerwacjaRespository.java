@@ -7,6 +7,7 @@ package repositories;
 
 import Beans.EntityManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class RezerwacjaRespository {
 
     }
 
-    public boolean mozliwaRejestracja(String dataRozpoczecia, String dataZakonczenia, int kawalekPolaID) throws ParseException, SQLException {
+ public boolean mozliwaRejestracja(String dataRozpoczecia, String dataZakonczenia, int kawalekPolaID) throws ParseException, SQLException {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Date dataR = format.parse(dataRozpoczecia);
@@ -49,24 +50,23 @@ public class RezerwacjaRespository {
 
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
-
-        ResultSet rs = statement.executeQuery("SELECT * from rezerwacja WHERE rezerwacjaID=" + kawalekPolaID);
+        if (dataR.compareTo(dataZ) > 0) {
+                return false;
+        }
+        ResultSet rs = statement.executeQuery("SELECT * from rezerwacja WHERE kawalekPolaID=" + kawalekPolaID );
         boolean czyRezerwowac = true;
         while (rs.next()) {
-            Date bdDataR = format.parse(rs.getNString("dataZaczecia"));
-            Date bdDataZ = format.parse(rs.getNString("dataZakonczenia"));
-
-             if (dataR.compareTo(bdDataZ) >= 1) {
-
-            } else if (dataZ.compareTo(bdDataR) >= 1) {
-
-            } else {
+            Date bdDataR = format.parse(rs.getString("dataZaczecia"));
+            Date bdDataZ = format.parse(rs.getString("dataZakonczenia"));
+        
+        
+             if (dataR.compareTo(bdDataZ) < 1) {
+                 if (dataZ.compareTo(bdDataR) >= 0) {
                 czyRezerwowac = false;
                 break;
-            }
-
+                 }
+            }     
         }
         return czyRezerwowac;
     }
-
 }
