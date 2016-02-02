@@ -40,7 +40,7 @@ public class RezerwacjaRespository {
 
     }
 
- public boolean mozliwaRejestracja(String dataRozpoczecia, String dataZakonczenia, int kawalekPolaID) throws ParseException, SQLException {
+    public boolean mozliwaRejestracja(String dataRozpoczecia, String dataZakonczenia, int kawalekPolaID) throws ParseException, SQLException {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Date dataR = format.parse(dataRozpoczecia);
@@ -51,21 +51,20 @@ public class RezerwacjaRespository {
         con = newEntityManager.getConnection();
         Statement statement = con.createStatement();
         if (dataR.compareTo(dataZ) > 0) {
-                return false;
+            return false;
         }
-        ResultSet rs = statement.executeQuery("SELECT * from rezerwacja WHERE kawalekPolaID=" + kawalekPolaID );
+        ResultSet rs = statement.executeQuery("SELECT * from rezerwacja WHERE kawalekPolaID=" + kawalekPolaID);
         boolean czyRezerwowac = true;
         while (rs.next()) {
             Date bdDataR = format.parse(rs.getString("dataZaczecia"));
             Date bdDataZ = format.parse(rs.getString("dataZakonczenia"));
-        
-        
-             if (dataR.compareTo(bdDataZ) < 1) {
-                 if (dataZ.compareTo(bdDataR) >= 0) {
-                czyRezerwowac = false;
-                break;
-                 }
-            }     
+
+            if (dataR.compareTo(bdDataZ) < 1) {
+                if (dataZ.compareTo(bdDataR) >= 0) {
+                    czyRezerwowac = false;
+                    break;
+                }
+            }
         }
         return czyRezerwowac;
     }

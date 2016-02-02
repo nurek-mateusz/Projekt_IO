@@ -17,12 +17,8 @@
                             </div>
                         </h1></a>
                 </div>
-                <div class="col-sm-3">
-                    <a href="/PoleNamiotowe/kontakt">
-                        <div class="standardowyPrzycisk">Kontakt</div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
+                
+                <div class="col-sm-6">
                     <a href="/PoleNamiotowe/rejestracja">
                         <div class="standardowyPrzycisk">Zarejestruj się</div>
                     </a>

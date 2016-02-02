@@ -53,6 +53,10 @@
                         Kontakt
                     </div></a>
             </div>
+            <div class="col-sm-3">
+            <a href="/PoleNamiotowe/logout"><div class="standardowyPrzycisk">
+                    Wyloguj sie
+                </div></a>
         </div>
     </div>
     <div class="container">

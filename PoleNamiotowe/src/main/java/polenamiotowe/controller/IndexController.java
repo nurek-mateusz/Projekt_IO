@@ -260,5 +260,17 @@ public class IndexController {
 
         return mav;
     }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(Model model, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        mav.setViewName("index");
+
+        return mav;
+    }
 
 }

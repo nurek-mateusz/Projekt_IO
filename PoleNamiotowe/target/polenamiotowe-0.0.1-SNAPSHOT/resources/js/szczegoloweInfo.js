@@ -29,7 +29,7 @@ $(document).ready(function () {
             var width = $(value).width();
             var koszt = $(value).find("info kwota").text();
             tekst += position.left.toString() + ',' + position.top.toString() + 
-                    ',' + height.toString() + ',' + width.toString()+',' + koszt+',';
+                    ',' + width.toString() + ',' + height.toString()+',' + koszt+',';
            
         });
         tekst=tekst.substr(0,tekst.length-1);
